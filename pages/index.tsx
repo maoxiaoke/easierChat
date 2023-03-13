@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Chat from '../components/Chat';
+import LeftMenu from '../components/LeftMenu';
+import Settings from '../components/Settings';
 // import Image from 'next/image'
 // import { Inter } from 'next/font/google'
 // import styles from '@/styles/Home.module.css'
@@ -17,7 +19,10 @@ export default function Home() {
       </Head>
       <main className="flex">
         {/* Left Menu */}
-        <div style={{ width: '320px', height: '100vh' }}></div>
+        <div style={{ width: '320px' }} className="min-h-screen bg-gray-800 flex flex-col justify-between">
+          <LeftMenu />
+          <Settings />
+        </div>
 
         {/* Right Menu */}
         <div className="flex-1">
