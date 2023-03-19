@@ -1,3 +1,5 @@
+import KeySetting from '../KeySetting';
+
 const Settings = () => {
   return (
     <div className="bg-gray-700 p-3">
@@ -6,7 +8,7 @@ const Settings = () => {
           <div className="jsx-7078ffb922cb3c38 text-xs text-white font-semibold flex items-center justify-end">软件秘钥</div>
           <button className="bg-gray-600 text-white group flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">⚠️ 未经许可</button>
           <div className="text-xs text-white font-semibold flex items-center justify-end">OPENAI API 秘钥</div>
-          <button className="bg-gray-600 text-white group flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">⚠️ 未经许可</button>
+          <KeySetting />
         </div>
       </div>
 

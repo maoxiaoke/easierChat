@@ -35,7 +35,7 @@ const Chat = () => {
       body: JSON.stringify({
         text,
         parentMessageId: lastChat?.id,
-        id: '2',
+        id: '1',
       })
     });
 

@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@radix-ui/colors': ^0.1.8
   '@radix-ui/react-avatar': ^1.0.2
+  '@radix-ui/react-dialog': ^1.0.3
   '@radix-ui/react-icons': ^1.2.0
   '@radix-ui/react-navigation-menu': ^1.1.2
   '@radix-ui/react-popover': ^1.0.5
@@ -17,6 +18,7 @@ specifiers:
   next: 13.2.4
   react: 18.2.0
   react-dom: 18.2.0
+  react-use: ^17.4.0
   swr: ^2.1.0
   tailwindcss: ^3.2.7
   typescript: 4.9.5
@@ -24,6 +26,7 @@ specifiers:
 dependencies:
   '@radix-ui/colors': npm.urbanic-inc.com/@radix-ui/colors/0.1.8
   '@radix-ui/react-avatar': npm.urbanic-inc.com/@radix-ui/react-avatar/1.0.2_biqbaboplfbrettd7655fr4n2y
+  '@radix-ui/react-dialog': npm.urbanic-inc.com/@radix-ui/react-dialog/1.0.3_zula6vjvt3wdocc4mwcxqa6nzi
   '@radix-ui/react-icons': npm.urbanic-inc.com/@radix-ui/react-icons/1.2.0_react@18.2.0
   '@radix-ui/react-navigation-menu': npm.urbanic-inc.com/@radix-ui/react-navigation-menu/1.1.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-popover': npm.urbanic-inc.com/@radix-ui/react-popover/1.0.5_zula6vjvt3wdocc4mwcxqa6nzi
@@ -38,6 +41,7 @@ dependencies:
   next: npm.urbanic-inc.com/next/13.2.4_biqbaboplfbrettd7655fr4n2y
   react: npm.urbanic-inc.com/react/18.2.0
   react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
+  react-use: npm.urbanic-inc.com/react-use/17.4.0_biqbaboplfbrettd7655fr4n2y
   swr: npm.urbanic-inc.com/swr/2.1.0_react@18.2.0
   typescript: npm.urbanic-inc.com/typescript/4.9.5
 
@@ -489,6 +493,36 @@ packages:
       react: npm.urbanic-inc.com/react/18.2.0
     dev: false
 
+  npm.urbanic-inc.com/@radix-ui/react-dialog/1.0.3_zula6vjvt3wdocc4mwcxqa6nzi:
+    resolution: {integrity: sha512-owNhq36kNPqC2/a+zJRioPg6HHnTn5B/sh/NjTY8r4W9g1L5VJlrzZIVcBr7R9Mg8iLjVmh6MGgMlfoVf/WO/A==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/@radix-ui%2freact-dialog/-/react-dialog-1.0.3.tgz}
+    id: npm.urbanic-inc.com/@radix-ui/react-dialog/1.0.3
+    name: '@radix-ui/react-dialog'
+    version: 1.0.3
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': npm.urbanic-inc.com/@babel/runtime/7.21.0
+      '@radix-ui/primitive': npm.urbanic-inc.com/@radix-ui/primitive/1.0.0
+      '@radix-ui/react-compose-refs': npm.urbanic-inc.com/@radix-ui/react-compose-refs/1.0.0_react@18.2.0
+      '@radix-ui/react-context': npm.urbanic-inc.com/@radix-ui/react-context/1.0.0_react@18.2.0
+      '@radix-ui/react-dismissable-layer': npm.urbanic-inc.com/@radix-ui/react-dismissable-layer/1.0.3_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-focus-guards': npm.urbanic-inc.com/@radix-ui/react-focus-guards/1.0.0_react@18.2.0
+      '@radix-ui/react-focus-scope': npm.urbanic-inc.com/@radix-ui/react-focus-scope/1.0.2_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-id': npm.urbanic-inc.com/@radix-ui/react-id/1.0.0_react@18.2.0
+      '@radix-ui/react-portal': npm.urbanic-inc.com/@radix-ui/react-portal/1.0.2_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-presence': npm.urbanic-inc.com/@radix-ui/react-presence/1.0.0_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-primitive': npm.urbanic-inc.com/@radix-ui/react-primitive/1.0.2_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-slot': npm.urbanic-inc.com/@radix-ui/react-slot/1.0.1_react@18.2.0
+      '@radix-ui/react-use-controllable-state': npm.urbanic-inc.com/@radix-ui/react-use-controllable-state/1.0.0_react@18.2.0
+      aria-hidden: npm.urbanic-inc.com/aria-hidden/1.2.3
+      react: npm.urbanic-inc.com/react/18.2.0
+      react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
+      react-remove-scroll: npm.urbanic-inc.com/react-remove-scroll/2.5.5_pmekkgnqduwlme35zpnqhenc34
+    transitivePeerDependencies:
+      - '@types/react'
+    dev: false
+
   npm.urbanic-inc.com/@radix-ui/react-direction/1.0.0_react@18.2.0:
     resolution: {integrity: sha512-2HV05lGUgYcA6xgLQ4BKPDmtL+QbIZYH5fCOTAOOcJ5O0QbWS3i9lKaurLzliYUDhORI2Qr3pyjhJh44lKA3rQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/@radix-ui%2freact-direction/-/react-direction-1.0.0.tgz}
     id: npm.urbanic-inc.com/@radix-ui/react-direction/1.0.0
@@ -842,6 +876,12 @@ packages:
       tslib: npm.urbanic-inc.com/tslib/2.5.0
     dev: false
 
+  npm.urbanic-inc.com/@types/js-cookie/2.2.7:
+    resolution: {integrity: sha512-aLkWa0C0vO5b4Sr798E26QgOkss68Un0bLjs7u9qxzPT5CG+8DuNTffWES58YzJs3hrVAOs1wonycqEBqNJubA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/@types%2fjs-cookie/-/js-cookie-2.2.7.tgz}
+    name: '@types/js-cookie'
+    version: 2.2.7
+    dev: false
+
   npm.urbanic-inc.com/@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/@types%2fjson5/-/json5-0.0.29.tgz}
     name: '@types/json5'
@@ -962,6 +1002,12 @@ packages:
     dependencies:
       '@typescript-eslint/types': npm.urbanic-inc.com/@typescript-eslint/types/5.54.1
       eslint-visitor-keys: npm.urbanic-inc.com/eslint-visitor-keys/3.3.0
+    dev: false
+
+  npm.urbanic-inc.com/@xobotyi/scrollbar-width/1.9.5:
+    resolution: {integrity: sha512-N8tkAACJx2ww8vFMneJmaAgmjAG1tnVBZJRLRcx061tmsLRZHSEZSLuGWnwPtunsSLvSqXQ2wfp7Mgqg1I+2dQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/@xobotyi%2fscrollbar-width/-/scrollbar-width-1.9.5.tgz}
+    name: '@xobotyi/scrollbar-width'
+    version: 1.9.5
     dev: false
 
   npm.urbanic-inc.com/acorn-jsx/5.3.2_acorn@8.8.2:
@@ -1406,6 +1452,14 @@ packages:
       semver: npm.urbanic-inc.com/semver/7.3.8
     dev: false
 
+  npm.urbanic-inc.com/copy-to-clipboard/3.3.3:
+    resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/copy-to-clipboard/-/copy-to-clipboard-3.3.3.tgz}
+    name: copy-to-clipboard
+    version: 3.3.3
+    dependencies:
+      toggle-selection: npm.urbanic-inc.com/toggle-selection/1.0.6
+    dev: false
+
   npm.urbanic-inc.com/cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/cross-spawn/-/cross-spawn-7.0.3.tgz}
     name: cross-spawn
@@ -1415,6 +1469,24 @@ packages:
       path-key: npm.urbanic-inc.com/path-key/3.1.1
       shebang-command: npm.urbanic-inc.com/shebang-command/2.0.0
       which: npm.urbanic-inc.com/which/2.0.2
+    dev: false
+
+  npm.urbanic-inc.com/css-in-js-utils/3.1.0:
+    resolution: {integrity: sha512-fJAcud6B3rRu+KHYk+Bwf+WFL2MDCJJ1XG9x137tJQ0xYxor7XziQtuGFbWNdqrvF4Tk26O3H73nfVqXt/fW1A==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/css-in-js-utils/-/css-in-js-utils-3.1.0.tgz}
+    name: css-in-js-utils
+    version: 3.1.0
+    dependencies:
+      hyphenate-style-name: npm.urbanic-inc.com/hyphenate-style-name/1.0.4
+    dev: false
+
+  npm.urbanic-inc.com/css-tree/1.1.3:
+    resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/css-tree/-/css-tree-1.1.3.tgz}
+    name: css-tree
+    version: 1.1.3
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      mdn-data: npm.urbanic-inc.com/mdn-data/2.0.14
+      source-map: npm.urbanic-inc.com/source-map/0.6.1
     dev: false
 
   npm.urbanic-inc.com/cssesc/3.0.0:
@@ -1627,6 +1699,14 @@ packages:
     version: 1.3.2
     dependencies:
       is-arrayish: npm.urbanic-inc.com/is-arrayish/0.2.1
+    dev: false
+
+  npm.urbanic-inc.com/error-stack-parser/2.1.4:
+    resolution: {integrity: sha512-Sk5V6wVazPhq5MhpO+AUxJn5x7XSXGl1R93Vn7i+zS15KDVxQijejNCrz8340/2bgLBjR9GtEG8ZVKONDjcqGQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/error-stack-parser/-/error-stack-parser-2.1.4.tgz}
+    name: error-stack-parser
+    version: 2.1.4
+    dependencies:
+      stackframe: npm.urbanic-inc.com/stackframe/1.3.4
     dev: false
 
   npm.urbanic-inc.com/es-abstract/1.21.1:
@@ -2084,6 +2164,24 @@ packages:
     version: 2.0.6
     dev: false
 
+  npm.urbanic-inc.com/fast-loops/1.1.3:
+    resolution: {integrity: sha512-8EZzEP0eKkEEVX+drtd9mtuQ+/QrlfW/5MlwcwK5Nds6EkZ/tRzEexkzUY2mIssnAyVLT+TKHuRXmFNNXYUd6g==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/fast-loops/-/fast-loops-1.1.3.tgz}
+    name: fast-loops
+    version: 1.1.3
+    dev: false
+
+  npm.urbanic-inc.com/fast-shallow-equal/1.0.0:
+    resolution: {integrity: sha512-HPtaa38cPgWvaCFmRNhlc6NG7pv6NUHqjPgVAkWGoB9mQMwYB27/K0CvOM5Czy+qpT3e8XJ6Q4aPAnzpNpzNaw==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/fast-shallow-equal/-/fast-shallow-equal-1.0.0.tgz}
+    name: fast-shallow-equal
+    version: 1.0.0
+    dev: false
+
+  npm.urbanic-inc.com/fastest-stable-stringify/2.0.2:
+    resolution: {integrity: sha512-bijHueCGd0LqqNK9b5oCMHc0MluJAx0cwqASgbWMvkO01lCYgIhacVRLcaDz3QnyYIRNJRDwMb41VuT6pHJ91Q==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/fastest-stable-stringify/-/fastest-stable-stringify-2.0.2.tgz}
+    name: fastest-stable-stringify
+    version: 2.0.2
+    dev: false
+
   npm.urbanic-inc.com/fastq/1.15.0:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/fastq/-/fastq-1.15.0.tgz}
     name: fastq
@@ -2411,6 +2509,12 @@ packages:
       lru-cache: npm.urbanic-inc.com/lru-cache/6.0.0
     dev: false
 
+  npm.urbanic-inc.com/hyphenate-style-name/1.0.4:
+    resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz}
+    name: hyphenate-style-name
+    version: 1.0.4
+    dev: false
+
   npm.urbanic-inc.com/ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/ignore/-/ignore-5.2.4.tgz}
     name: ignore
@@ -2448,6 +2552,15 @@ packages:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/inherits/-/inherits-2.0.4.tgz}
     name: inherits
     version: 2.0.4
+    dev: false
+
+  npm.urbanic-inc.com/inline-style-prefixer/6.0.4:
+    resolution: {integrity: sha512-FwXmZC2zbeeS7NzGjJ6pAiqRhXR0ugUShSNb6GApMl6da0/XGc4MOJsoWAywia52EEWbXNSy0pzkwz/+Y+swSg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/inline-style-prefixer/-/inline-style-prefixer-6.0.4.tgz}
+    name: inline-style-prefixer
+    version: 6.0.4
+    dependencies:
+      css-in-js-utils: npm.urbanic-inc.com/css-in-js-utils/3.1.0
+      fast-loops: npm.urbanic-inc.com/fast-loops/1.1.3
     dev: false
 
   npm.urbanic-inc.com/internal-slot/1.0.5:
@@ -2701,6 +2814,12 @@ packages:
     version: 2.0.0
     dev: false
 
+  npm.urbanic-inc.com/js-cookie/2.2.1:
+    resolution: {integrity: sha512-HvdH2LzI/EAZcUwA8+0nKNtWHqS+ZmijLA30RwZA0bo7ToCckjK5MkGhjED9KoRcXO6BaGI3I9UIzSA1FKFPOQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/js-cookie/-/js-cookie-2.2.1.tgz}
+    name: js-cookie
+    version: 2.2.1
+    dev: false
+
   npm.urbanic-inc.com/js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/js-sdsl/-/js-sdsl-4.3.0.tgz}
     name: js-sdsl
@@ -2858,6 +2977,12 @@ packages:
       yallist: npm.urbanic-inc.com/yallist/4.0.0
     dev: false
 
+  npm.urbanic-inc.com/mdn-data/2.0.14:
+    resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/mdn-data/-/mdn-data-2.0.14.tgz}
+    name: mdn-data
+    version: 2.0.14
+    dev: false
+
   npm.urbanic-inc.com/merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/merge2/-/merge2-1.4.1.tgz}
     name: merge2
@@ -2903,6 +3028,27 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/ms/-/ms-2.1.3.tgz}
     name: ms
     version: 2.1.3
+    dev: false
+
+  npm.urbanic-inc.com/nano-css/5.3.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-vSB9X12bbNu4ALBu7nigJgRViZ6ja3OU7CeuiV1zMIbXOdmkLahgtPmh3GBOlDxbKY0CitqlPdOReGlBLSp+yg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/nano-css/-/nano-css-5.3.5.tgz}
+    id: npm.urbanic-inc.com/nano-css/5.3.5
+    name: nano-css
+    version: 5.3.5
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      css-tree: npm.urbanic-inc.com/css-tree/1.1.3
+      csstype: npm.urbanic-inc.com/csstype/3.1.1
+      fastest-stable-stringify: npm.urbanic-inc.com/fastest-stable-stringify/2.0.2
+      inline-style-prefixer: npm.urbanic-inc.com/inline-style-prefixer/6.0.4
+      react: npm.urbanic-inc.com/react/18.2.0
+      react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
+      rtl-css-js: npm.urbanic-inc.com/rtl-css-js/1.16.1
+      sourcemap-codec: npm.urbanic-inc.com/sourcemap-codec/1.4.8
+      stacktrace-js: npm.urbanic-inc.com/stacktrace-js/2.0.2
+      stylis: npm.urbanic-inc.com/stylis/4.1.3
     dev: false
 
   npm.urbanic-inc.com/nanoid/3.3.4:
@@ -3455,6 +3601,46 @@ packages:
       tslib: npm.urbanic-inc.com/tslib/2.5.0
     dev: false
 
+  npm.urbanic-inc.com/react-universal-interface/0.6.2_react@18.2.0+tslib@2.5.0:
+    resolution: {integrity: sha512-dg8yXdcQmvgR13RIlZbTRQOoUrDciFVoSBZILwjE2LFISxZZ8loVJKAkuzswl5js8BHda79bIb2b84ehU8IjXw==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/react-universal-interface/-/react-universal-interface-0.6.2.tgz}
+    id: npm.urbanic-inc.com/react-universal-interface/0.6.2
+    name: react-universal-interface
+    version: 0.6.2
+    peerDependencies:
+      react: '*'
+      tslib: '*'
+    dependencies:
+      react: npm.urbanic-inc.com/react/18.2.0
+      tslib: npm.urbanic-inc.com/tslib/2.5.0
+    dev: false
+
+  npm.urbanic-inc.com/react-use/17.4.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-TgbNTCA33Wl7xzIJegn1HndB4qTS9u03QUwyNycUnXaweZkE4Kq2SB+Yoxx8qbshkZGYBDvUXbXWRUmQDcZZ/Q==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/react-use/-/react-use-17.4.0.tgz}
+    id: npm.urbanic-inc.com/react-use/17.4.0
+    name: react-use
+    version: 17.4.0
+    peerDependencies:
+      react: ^16.8.0  || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0  || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@types/js-cookie': npm.urbanic-inc.com/@types/js-cookie/2.2.7
+      '@xobotyi/scrollbar-width': npm.urbanic-inc.com/@xobotyi/scrollbar-width/1.9.5
+      copy-to-clipboard: npm.urbanic-inc.com/copy-to-clipboard/3.3.3
+      fast-deep-equal: npm.urbanic-inc.com/fast-deep-equal/3.1.3
+      fast-shallow-equal: npm.urbanic-inc.com/fast-shallow-equal/1.0.0
+      js-cookie: npm.urbanic-inc.com/js-cookie/2.2.1
+      nano-css: npm.urbanic-inc.com/nano-css/5.3.5_biqbaboplfbrettd7655fr4n2y
+      react: npm.urbanic-inc.com/react/18.2.0
+      react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
+      react-universal-interface: npm.urbanic-inc.com/react-universal-interface/0.6.2_react@18.2.0+tslib@2.5.0
+      resize-observer-polyfill: npm.urbanic-inc.com/resize-observer-polyfill/1.5.1
+      screenfull: npm.urbanic-inc.com/screenfull/5.2.0
+      set-harmonic-interval: npm.urbanic-inc.com/set-harmonic-interval/1.0.1
+      throttle-debounce: npm.urbanic-inc.com/throttle-debounce/3.0.1
+      ts-easing: npm.urbanic-inc.com/ts-easing/0.2.0
+      tslib: npm.urbanic-inc.com/tslib/2.5.0
+    dev: false
+
   npm.urbanic-inc.com/react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/react/-/react-18.2.0.tgz}
     name: react
@@ -3528,6 +3714,12 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
+  npm.urbanic-inc.com/resize-observer-polyfill/1.5.1:
+    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz}
+    name: resize-observer-polyfill
+    version: 1.5.1
+    dev: false
+
   npm.urbanic-inc.com/resolve-from/4.0.0:
     resolution: {integrity: sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/resolve-from/-/resolve-from-4.0.0.tgz}
     name: resolve-from
@@ -3571,6 +3763,14 @@ packages:
       glob: npm.urbanic-inc.com/glob/7.2.3
     dev: false
 
+  npm.urbanic-inc.com/rtl-css-js/1.16.1:
+    resolution: {integrity: sha512-lRQgou1mu19e+Ya0LsTvKrVJ5TYUbqCVPAiImX3UfLTenarvPUl1QFdvu5Z3PYmHT9RCcwIfbjRQBntExyj3Zg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/rtl-css-js/-/rtl-css-js-1.16.1.tgz}
+    name: rtl-css-js
+    version: 1.16.1
+    dependencies:
+      '@babel/runtime': npm.urbanic-inc.com/@babel/runtime/7.21.0
+    dev: false
+
   npm.urbanic-inc.com/run-parallel/1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/run-parallel/-/run-parallel-1.2.0.tgz}
     name: run-parallel
@@ -3596,6 +3796,13 @@ packages:
       loose-envify: npm.urbanic-inc.com/loose-envify/1.4.0
     dev: false
 
+  npm.urbanic-inc.com/screenfull/5.2.0:
+    resolution: {integrity: sha512-9BakfsO2aUQN2K9Fdbj87RJIEZ82Q9IGim7FqM5OsebfoFC6ZHXgDq/KvniuLTPdeM8wY2o6Dj3WQ7KeQCj3cA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/screenfull/-/screenfull-5.2.0.tgz}
+    name: screenfull
+    version: 5.2.0
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   npm.urbanic-inc.com/semver/6.3.0:
     resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/semver/-/semver-6.3.0.tgz}
     name: semver
@@ -3611,6 +3818,13 @@ packages:
     hasBin: true
     dependencies:
       lru-cache: npm.urbanic-inc.com/lru-cache/6.0.0
+    dev: false
+
+  npm.urbanic-inc.com/set-harmonic-interval/1.0.1:
+    resolution: {integrity: sha512-AhICkFV84tBP1aWqPwLZqFvAwqEoVA9kxNMniGEUvzOlm4vLmOFLiTT3UZ6bziJTy4bOVpzWGTfSCbmaayGx8g==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/set-harmonic-interval/-/set-harmonic-interval-1.0.1.tgz}
+    name: set-harmonic-interval
+    version: 1.0.1
+    engines: {node: '>=6.9'}
     dev: false
 
   npm.urbanic-inc.com/shebang-command/2.0.0:
@@ -3659,6 +3873,26 @@ packages:
     version: 1.0.2
     engines: {node: '>=0.10.0'}
 
+  npm.urbanic-inc.com/source-map/0.5.6:
+    resolution: {integrity: sha512-MjZkVp0NHr5+TPihLcadqnlVoGIoWo4IBHptutGh9wI3ttUYvCG26HkSuDi+K6lsZ25syXJXcctwgyVCt//xqA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/source-map/-/source-map-0.5.6.tgz}
+    name: source-map
+    version: 0.5.6
+    engines: {node: '>=0.10.0'}
+    dev: false
+
+  npm.urbanic-inc.com/source-map/0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/source-map/-/source-map-0.6.1.tgz}
+    name: source-map
+    version: 0.6.1
+    engines: {node: '>=0.10.0'}
+    dev: false
+
+  npm.urbanic-inc.com/sourcemap-codec/1.4.8:
+    resolution: {integrity: sha512-9NykojV5Uih4lgo5So5dtw+f0JgJX30KCNI8gwhz2J9A15wD0Ml6tjHKwf6fTSa6fAdVBdZeNOs9eJ71qCk8vA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/sourcemap-codec/-/sourcemap-codec-1.4.8.tgz}
+    name: sourcemap-codec
+    version: 1.4.8
+    dev: false
+
   npm.urbanic-inc.com/spdx-correct/3.2.0:
     resolution: {integrity: sha512-kN9dJbvnySHULIluDHy32WHRUu3Og7B9sbY7tsFLctQkIqnMh3hErYgdMjTYuqmcXX+lK5T1lnUt3G7zNswmZA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/spdx-correct/-/spdx-correct-3.2.0.tgz}
     name: spdx-correct
@@ -3687,6 +3921,39 @@ packages:
     resolution: {integrity: sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/spdx-license-ids/-/spdx-license-ids-3.0.13.tgz}
     name: spdx-license-ids
     version: 3.0.13
+    dev: false
+
+  npm.urbanic-inc.com/stack-generator/2.0.10:
+    resolution: {integrity: sha512-mwnua/hkqM6pF4k8SnmZ2zfETsRUpWXREfA/goT8SLCV4iOFa4bzOX2nDipWAZFPTjLvQB82f5yaodMVhK0yJQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/stack-generator/-/stack-generator-2.0.10.tgz}
+    name: stack-generator
+    version: 2.0.10
+    dependencies:
+      stackframe: npm.urbanic-inc.com/stackframe/1.3.4
+    dev: false
+
+  npm.urbanic-inc.com/stackframe/1.3.4:
+    resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/stackframe/-/stackframe-1.3.4.tgz}
+    name: stackframe
+    version: 1.3.4
+    dev: false
+
+  npm.urbanic-inc.com/stacktrace-gps/3.1.2:
+    resolution: {integrity: sha512-GcUgbO4Jsqqg6RxfyTHFiPxdPqF+3LFmQhm7MgCuYQOYuWyqxo5pwRPz5d/u6/WYJdEnWfK4r+jGbyD8TSggXQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/stacktrace-gps/-/stacktrace-gps-3.1.2.tgz}
+    name: stacktrace-gps
+    version: 3.1.2
+    dependencies:
+      source-map: npm.urbanic-inc.com/source-map/0.5.6
+      stackframe: npm.urbanic-inc.com/stackframe/1.3.4
+    dev: false
+
+  npm.urbanic-inc.com/stacktrace-js/2.0.2:
+    resolution: {integrity: sha512-Je5vBeY4S1r/RnLydLl0TBTi3F2qdfWmYsGvtfZgEI+SCprPppaIhQf5nGcal4gI4cGpCV/duLcAzT1np6sQqg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/stacktrace-js/-/stacktrace-js-2.0.2.tgz}
+    name: stacktrace-js
+    version: 2.0.2
+    dependencies:
+      error-stack-parser: npm.urbanic-inc.com/error-stack-parser/2.1.4
+      stack-generator: npm.urbanic-inc.com/stack-generator/2.0.10
+      stacktrace-gps: npm.urbanic-inc.com/stacktrace-gps/3.1.2
     dev: false
 
   npm.urbanic-inc.com/stop-iteration-iterator/1.0.0:
@@ -3780,6 +4047,12 @@ packages:
     dependencies:
       client-only: npm.urbanic-inc.com/client-only/0.0.1
       react: npm.urbanic-inc.com/react/18.2.0
+    dev: false
+
+  npm.urbanic-inc.com/stylis/4.1.3:
+    resolution: {integrity: sha512-GP6WDNWf+o403jrEp9c5jibKavrtLW+/qYGhFxFrG8maXhwTBI7gLLhiBb0o7uFccWN+EOS9aMO6cGHWAO07OA==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/stylis/-/stylis-4.1.3.tgz}
+    name: stylis
+    version: 4.1.3
     dev: false
 
   npm.urbanic-inc.com/supports-color/5.5.0:
@@ -3876,6 +4149,13 @@ packages:
     version: 0.2.0
     dev: false
 
+  npm.urbanic-inc.com/throttle-debounce/3.0.1:
+    resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz}
+    name: throttle-debounce
+    version: 3.0.1
+    engines: {node: '>=10'}
+    dev: false
+
   npm.urbanic-inc.com/tiny-glob/0.2.9:
     resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/tiny-glob/-/tiny-glob-0.2.9.tgz}
     name: tiny-glob
@@ -3892,6 +4172,18 @@ packages:
     engines: {node: '>=8.0'}
     dependencies:
       is-number: npm.urbanic-inc.com/is-number/7.0.0
+
+  npm.urbanic-inc.com/toggle-selection/1.0.6:
+    resolution: {integrity: sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/toggle-selection/-/toggle-selection-1.0.6.tgz}
+    name: toggle-selection
+    version: 1.0.6
+    dev: false
+
+  npm.urbanic-inc.com/ts-easing/0.2.0:
+    resolution: {integrity: sha512-Z86EW+fFFh/IFB1fqQ3/+7Zpf9t2ebOAxNI/V6Wo7r5gqiqtxmgTlQ1qbqQcjLKYeSHPTsEmvlJUDg/EuL0uHQ==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/ts-easing/-/ts-easing-0.2.0.tgz}
+    name: ts-easing
+    version: 0.2.0
+    dev: false
 
   npm.urbanic-inc.com/tsconfig-paths/3.14.2:
     resolution: {integrity: sha512-o/9iXgCYc5L/JxCHPe3Hvh8Q/2xm5Z+p18PESBU6Ff33695QnCHBEjcytY2q19ua7Mbl/DavtBOLq+oG0RCL+g==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/tsconfig-paths/-/tsconfig-paths-3.14.2.tgz}

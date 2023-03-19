@@ -10,8 +10,8 @@ const AvatarComponent = ({ chat }: { chat: ChatMessage }) => (
   <Avatar.Root className="AvatarRoot min-w-fit">
     <Avatar.Image
       className="AvatarImage"
-      src={chat.role === 'user' ? "https://joesch.moe/api/v1/random" : '/chatGPT.png'}
-      alt="Colm Tuite"
+      src={chat.role === 'user' ? "/profile.png" : '/chatGPT.png'}
+      alt="portrait"
     />
     <Avatar.Fallback className="AvatarFallback" delayMs={600}>
       {chat.role === 'user' ? 'Me' : 'ChatGPT'}
