@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { ChatGPTAPI, ChatGPTUnofficialProxyAPI } from 'chatgpt';
+import { ChatGPTAPI } from 'chatgpt';
 import { builtinPrompts } from '../../data/prompts';
 
 import type { NextApiRequest, NextApiResponse } from 'next'

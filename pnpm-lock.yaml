@@ -15,6 +15,8 @@ specifiers:
   classnames: ^2.3.2
   eslint: 8.36.0
   eslint-config-next: 13.2.4
+  lottie-react: ^2.4.0
+  lottie-web: ^5.10.2
   next: 13.2.4
   react: 18.2.0
   react-dom: 18.2.0
@@ -38,6 +40,8 @@ dependencies:
   classnames: npm.urbanic-inc.com/classnames/2.3.2
   eslint: npm.urbanic-inc.com/eslint/8.36.0
   eslint-config-next: npm.urbanic-inc.com/eslint-config-next/13.2.4_vgl77cfdswitgr47lm5swmv43m
+  lottie-react: npm.urbanic-inc.com/lottie-react/2.4.0_biqbaboplfbrettd7655fr4n2y
+  lottie-web: npm.urbanic-inc.com/lottie-web/5.10.2
   next: npm.urbanic-inc.com/next/13.2.4_biqbaboplfbrettd7655fr4n2y
   react: npm.urbanic-inc.com/react/18.2.0
   react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
@@ -2966,6 +2970,26 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: npm.urbanic-inc.com/js-tokens/4.0.0
+    dev: false
+
+  npm.urbanic-inc.com/lottie-react/2.4.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-pDJGj+AQlnlyHvOHFK7vLdsDcvbuqvwPZdMlJ360wrzGFurXeKPr8SiRCjLf3LrNYKANQtSsh5dz9UYQHuqx4w==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/lottie-react/-/lottie-react-2.4.0.tgz}
+    id: npm.urbanic-inc.com/lottie-react/2.4.0
+    name: lottie-react
+    version: 2.4.0
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lottie-web: npm.urbanic-inc.com/lottie-web/5.10.2
+      react: npm.urbanic-inc.com/react/18.2.0
+      react-dom: npm.urbanic-inc.com/react-dom/18.2.0_react@18.2.0
+    dev: false
+
+  npm.urbanic-inc.com/lottie-web/5.10.2:
+    resolution: {integrity: sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A==, registry: https://npm.urbanic.cn/, tarball: https://npm.urbanic-inc.com/lottie-web/-/lottie-web-5.10.2.tgz}
+    name: lottie-web
+    version: 5.10.2
     dev: false
 
   npm.urbanic-inc.com/lru-cache/6.0.0:

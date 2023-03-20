@@ -3,10 +3,11 @@ import { Cross2Icon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLocalStorage } from 'react-use';
+import Lottie from '../Lottie';
 
 const KeySetting = () => {
-  const [value, setValue, remove] = useLocalStorage<string>('ec-openai-key');
   const [key, setKey] = useState('');
+  const [value, setValue, remove] = useLocalStorage<string>('ec-openai-key');
 
   console.log('value', value, key)
 
@@ -14,8 +15,9 @@ const KeySetting = () => {
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <button
-          className="bg-gray-600 text-white group flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
-          ⚠️ 未经许可
+          className="bg-gray-600 text-white group flex items-center justify-between rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
+          <Lottie />
+          {value ? `「***${value.slice(-4)}」` : '未设置'}
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
