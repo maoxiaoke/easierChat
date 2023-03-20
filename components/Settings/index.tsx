@@ -1,4 +1,9 @@
-import KeySetting from '../KeySetting';
+import dynamic from 'next/dynamic';
+
+const KeySetting = dynamic(
+  () => import('../KeySetting'),
+  { ssr: false }
+)
 
 const Settings = () => {
   return (

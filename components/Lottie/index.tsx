@@ -1,32 +1,61 @@
-import { useLottie, useLottieInteractivity } from "lottie-react";
 import activity from "../../lottie/activity.json";
+import { useRef, useEffect } from 'react';
+import lottie from 'lottie-web';
 
-const style = {
-  height: "20px",
-};
+import type { AnimationItem } from 'lottie-web';
 
-const Lottie = () => {
-  const lottieObj = useLottie({
-    animationData: activity,
-  }, style);
-  const Animation = useLottieInteractivity({
-    lottieObj,
-    mode: "cursor",
-    actions: [
-      {
-        position: { x: [0, 1], y: [0, 1] },
-        type: "play",
-        frames: [0, 30],
-      },
-      {
-        position: { x: -1, y: -1 },
-        type: "stop",
-        frames: [0],
-      },
-    ],
-  });
-
-  return Animation;
+export interface LottieProps {
+  iconStyle?: React.CSSProperties;
+  children?: React.ReactNode;
+  className?: string;
 }
 
+const Lottie = ({ iconStyle, children, className }: LottieProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<AnimationItem>();
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    const animation = lottie.loadAnimation({
+      container: containerRef.current,
+      renderer: 'svg',
+      loop: false,
+      autoplay: false,
+      animationData: activity,
+    });
+
+    animationRef.current = animation;
+
+    return () => {
+      animation && animation.destroy();
+    };
+  }, []);
+
+  const handleMouseEnter = () => {
+    if (!animationRef.current) {
+      return;
+    }
+    animationRef.current.play();
+    animationRef.current.loop = true;
+  };
+
+  const handleMouseLeave = () => {
+    if (!animationRef.current) {
+      return;
+    }
+    animationRef.current.loop = false;
+  };
+
+  return (
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className={className}>
+      <div ref={containerRef} style={iconStyle}></div>
+      { children  ? children : null }
+    </div>
+  );
+};
+
 export default Lottie;
+

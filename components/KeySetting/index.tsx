@@ -16,8 +16,9 @@ const KeySetting = () => {
       <Dialog.Trigger asChild>
         <button
           className="bg-gray-600 text-white group flex items-center justify-between rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
-          <Lottie />
-          {value ? `「***${value.slice(-4)}」` : '未设置'}
+          <Lottie iconStyle={{ height: '20px' }} className="flex items-center justify-between">
+            {value ? `「***${value.slice(-4)}」` : '未设置'}
+          </Lottie>
         </button>
       </Dialog.Trigger>
       <Dialog.Portal>
