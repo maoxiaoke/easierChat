@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import ChatRecord from '../ChatRecord';
-import FunctionalZone from '../FunctionalZone';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
+import dynamic from 'next/dynamic';
+
+const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
 import type { ChatMessage } from 'chatgpt';
 

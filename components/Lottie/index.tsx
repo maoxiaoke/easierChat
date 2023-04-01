@@ -1,4 +1,3 @@
-import activity from "../../lottie/activity.json";
 import { useRef, useEffect } from 'react';
 import lottie from 'lottie-web';
 
@@ -8,9 +7,10 @@ export interface LottieProps {
   iconStyle?: React.CSSProperties;
   children?: React.ReactNode;
   className?: string;
+  data: any;
 }
 
-const Lottie = ({ iconStyle, children, className }: LottieProps) => {
+const Lottie = ({ iconStyle, children, className, data }: LottieProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<AnimationItem>();
 
@@ -24,7 +24,7 @@ const Lottie = ({ iconStyle, children, className }: LottieProps) => {
       renderer: 'svg',
       loop: false,
       autoplay: false,
-      animationData: activity,
+      animationData: data,
     });
 
     animationRef.current = animation;

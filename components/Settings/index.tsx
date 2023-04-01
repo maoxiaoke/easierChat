@@ -1,4 +1,7 @@
 import dynamic from 'next/dynamic';
+import Lottie from '../Lottie';
+import activity from "../../lottie/activity.json";
+import { useOpenaiKey } from '../../contexts/openaiKey';
 
 const KeySetting = dynamic(
   () => import('../KeySetting'),
@@ -6,6 +9,7 @@ const KeySetting = dynamic(
 )
 
 const Settings = () => {
+  const { value } = useOpenaiKey();
   return (
     <div className="bg-gray-700 p-3">
       <div className="mb-2 flex items-center justify-center">
@@ -14,10 +18,19 @@ const Settings = () => {
             软件秘钥
           </div>
           <button className="bg-gray-600 text-white group flex items-center justify-center rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
-            ⚠️ 未经许可
+            ⚠️ Beta
           </button>
           <div className="text-xs text-white font-semibold flex items-center justify-end">OPENAI API 秘钥</div>
-          <KeySetting />
+          <KeySetting>
+            <button
+            className="bg-gray-600 text-white group flex items-center justify-between rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
+            <Lottie
+              data={activity}
+              iconStyle={{ height: '20px' }} className="flex items-center justify-between">
+              {value ? `「***${value.slice(-4)}」` : '未设置'}
+            </Lottie>
+          </button>
+          </KeySetting>
         </div>
       </div>
 

@@ -1,4 +1,11 @@
 // Some are from https://newzone.top/chatgpt/
+export interface AssistantRole {
+  id: string,
+  character: string,
+  prompt: string;
+  title: string;
+  desc: string;
+}
 
 const builtinPrompts = [
   {
@@ -30,5 +37,6 @@ const builtinPrompts = [
     desc: '可以阅读文章'
   }
 ];
+
 
 export { builtinPrompts };

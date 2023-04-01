@@ -1,31 +1,23 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
 import Link from 'next/link';
-import { useState } from 'react';
-import { useLocalStorage } from 'react-use';
-import Lottie from '../Lottie';
+import React, { useState } from 'react';
+import { useOpenaiKey } from '../../contexts/openaiKey';
 
-const KeySetting = () => {
+const KeySetting = ({ children }: { children: React.ReactNode }) => {
   const [key, setKey] = useState('');
-  const [value, setValue, remove] = useLocalStorage<string>('ec-openai-key');
-
-  console.log('value', value, key)
+  const { value, setValue, remove } = useOpenaiKey();
 
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button
-          className="bg-gray-600 text-white group flex items-center justify-between rounded-md px-2 py-1 text-xs font-medium w-full hover:bg-gray-500 transition-all">
-          <Lottie iconStyle={{ height: '20px' }} className="flex items-center justify-between">
-            {value ? `「***${value.slice(-4)}」` : '未设置'}
-          </Lottie>
-        </button>
+        { children }
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay" />
         <Dialog.Content className="DialogContent">
           <Dialog.Title className="DialogTitle">输入你的 OpenAI API 秘钥</Dialog.Title>
-          <Link href="" className="mt-2 inline-block text-blue-500 text-xs hover:underline">→ Get your API key from OpenAI dashboard.</Link>
+          <Link href="" className="mt-2 inline-block text-blue-500 text-xs hover:underline">→ 前往 OpenAI 网站获取你的 API 秘钥</Link>
           <Dialog.Description className="DialogDescription">
             秘钥会本地存储，不用担心泄露
           </Dialog.Description>
