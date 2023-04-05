@@ -1,6 +1,5 @@
 import * as Avatar from '@radix-ui/react-avatar';
 import cls from 'classnames';
-import type { ChatMessage } from 'chatgpt';
 
 export interface ChatRecordProps {
   chats: ChatMessage[];

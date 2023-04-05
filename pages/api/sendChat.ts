@@ -2,14 +2,15 @@
 import { ChatGPTAPI } from 'chatgpt';
 import { builtinPrompts } from '../../data/prompts';
 
+import { client as claudeClient, AI_PROMPT, HUMAN_PROMPT } from '../../services/claude';
+
 import type { NextApiRequest, NextApiResponse } from 'next'
-import type { ChatMessage } from 'chatgpt';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ChatMessage>
 ) {
-  const { text, parentMessageId, id } = req.body;
+  const { text, id } = req.body;
   const prompt = builtinPrompts.find((p) => p.id === id)?.prompt;
 
   console.log('----kaishi---')
@@ -29,10 +30,37 @@ export default async function handler(
   //   // systemMessage: prompt,
   // })
   // console.log('chatRes---', chatRes, prompt + text)
-  const mockRes = {
-    id: '123434',
-    "role": "assistant" as any,
-    "text": "Hey there, Mr. Yo! Is that some sort of new yoghurt brand or are you just excited to see me?"
+  console.log('text', text)
+  try {
+    const claudeResponse = await claudeClient.complete({
+      prompt: text,
+      stop_sequences: [HUMAN_PROMPT],
+      max_tokens_to_sample: 200,
+      model: "claude-v1",
+    });
+
+    return res.status(200).json({
+      date: new Date(),
+      role: 'assistant',
+      text: claudeResponse.completion,
+    })
+  } catch (e: any) {
+    // res.status(500).json({
+    //   error: e.message,
+    // })
   }
-  res.status(200).json(mockRes)
+
+    // .then((completion) => {
+    //   console.log(completion);
+    // })
+    // .catch((error) => {
+    //   console.error(error);
+    // });
+    
+  //   const mockRes = {
+  //     id: '123434',
+  //     "role": "assistant" as any,
+  //     "text": "Hey there, Mr. Yo! Is that some sort of new yoghurt brand or are you just excited to see me?"
+  //   }
+  // res.status(200).json(mockRes)
 }

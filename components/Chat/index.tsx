@@ -2,28 +2,37 @@ import { useState } from 'react';
 import ChatRecord from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
+import { formatClaudePrompt } from '../../helpers/cluade.helpers';
 import dynamic from 'next/dynamic';
+
+import { useLocalStorage } from 'react-use';
 
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
-import type { ChatMessage } from 'chatgpt';
-
 const Chat = () => {
   const [text, setText] = useState<string>('');
-  const [chats, setChats] = useState<ChatMessage[]>([]);
+  // const [chats, setChats] = useState<ChatMessage[]>([]);
   const [waiting, setWaiting] = useState<boolean>(false);
+
+  const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
 
   const sendChat = async () => {
     if (!text.trim() || waiting) {
       return;
     }
-    const lastChat = chats[chats.length - 1];
 
-    setChats(cs => [...cs, {
+    const _chats: ChatMessage[] = [
+      ...(chats ?? []),
+      {
         role: 'user',
         text,
-        id: lastChat?.id,
-      }]);
+        date: new Date(),
+      }
+    ];
+
+    setChats(_chats);
+
+    const claudePrompt = formatClaudePrompt(_chats)
 
     setText('');
     setWaiting(true);
@@ -35,8 +44,7 @@ const Chat = () => {
       },
       method: "POST",
       body: JSON.stringify({
-        text,
-        parentMessageId: lastChat?.id,
+        text: claudePrompt,
         id: '1',
       })
     });
@@ -44,34 +52,44 @@ const Chat = () => {
     console.log('gptResponse', gptResponse)
 
     setWaiting(false);
-    setChats(cs => ([
-      ...cs,
-      gptResponse,
-    ]));
+    setChats([ ..._chats, gptResponse,
+]);
 
   }
 
   return (
     <>
       {/* Header */}
-      <div className="top-0 sticky bg-white shadow-lg flex justify-center items-center p-2">
+      <div
+        className="top-0 fixed bg-white shadow-lg flex justify-center items-center p-2 z-50"
+        style={{
+          width: 'calc(100% - 320px)',
+        }}
+      >
         <div className="text-center">
           <p className="font-bold">新聊天</p>
           <p className="text-gray-400 text-xs">开启一个新聊天</p>
         </div>
       </div>
+      <div className="max-h-screen overflow-y-scroll">
+        <div className="max-w-2xl mx-auto mt-9">
+          <Intro />
 
-      <div className="max-w-2xl mx-auto mt-9">
-        <Intro />
+          <FunctionalZone />
 
-        <FunctionalZone />
+          <div className="pb-24">
+            { chats && <ChatRecord chats={chats} />}
+          </div>
 
-        <div className="my-10">
-          <ChatRecord chats={chats} />
         </div>
+      </div>
+
 
         {/* Footer */}
-        <div className="sticky bg-white bottom-0 w-full flex flex-col justify-center items-center">
+      <div className="fixed bottom-0 pt-4 bg-white z-50" style={{
+        width: 'calc(100% - 320px)',
+      }}>
+        <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
           <div className="w-full flex">
             <textarea
               value={text}
