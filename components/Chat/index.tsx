@@ -37,7 +37,7 @@ const Chat = () => {
       {
         role: 'user',
         text,
-        date: new Date(),
+        date: (new Date()).toUTCString(),
       }
     ];
 

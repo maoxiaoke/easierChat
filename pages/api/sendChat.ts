@@ -40,7 +40,7 @@ export default async function handler(
     });
 
     return res.status(200).json({
-      date: new Date(),
+      date: (new Date()).toString(),
       role: 'assistant',
       text: claudeResponse.completion,
     })

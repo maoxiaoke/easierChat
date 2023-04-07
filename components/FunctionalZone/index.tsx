@@ -33,7 +33,7 @@ const DialogDemo = ({ onChange }: { onChange: (p: AssistantRole) => void}) => (
         <ul className="List two">
           {
             builtinPrompts.map((prompt) => (
-              <Dialog.Close asChild>
+              <Dialog.Close asChild key={prompt.id}>
                 <ListItem
                   key={prompt.id}
                   title={prompt.title}
