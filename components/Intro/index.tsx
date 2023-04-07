@@ -43,7 +43,7 @@ const Intro = () => {
         </div>
       </div>
 
-      {
+      {/* {
           !openaiKey ? (
             <div className="flex items-center justify-center mb-10 flex-col">
               <div className="text-gray-600">开始之前，easierChat 需要知道你的 OpenAI 秘钥</div>
@@ -60,7 +60,7 @@ const Intro = () => {
             </div>
 
           ) : null
-        }
+        } */}
     </>
   )
 }

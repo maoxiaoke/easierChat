@@ -1,4 +1,4 @@
-export const formatClaudePrompt = (chats: ChatMessage[]): string => {
+export const formatClaudePrompt = (chats: ChatMessage[], prompt: string = ''): string => {
   if (chats.length === 0) {
     return '';
   }
@@ -10,6 +10,6 @@ export const formatClaudePrompt = (chats: ChatMessage[]): string => {
       }
       return `${pre}Assistant: ${chat.text}\n\n`
 
-    }, '\n\n')
+    }, `\n\nHuman: ${prompt} \n\n`)
     .concat('Assistant:');
 }

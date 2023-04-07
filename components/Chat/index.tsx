@@ -1,20 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ChatRecord from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
 import dynamic from 'next/dynamic';
+import { builtinPrompts } from '../../data/prompts';
+import { useAssistantRole } from '../../contexts/assistant';
 
 import { useLocalStorage } from 'react-use';
 
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
 const Chat = () => {
+  const { value, setValue } = useAssistantRole();
+  const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
   // const [chats, setChats] = useState<ChatMessage[]>([]);
   const [waiting, setWaiting] = useState<boolean>(false);
+  const assistantRole = builtinPrompts.find((p) => p.id === value);
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
+
+  useEffect(() => {
+    if (chats?.length && chatWrapperRef.current) {
+      chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
+    }
+  }, [chats]);
 
   const sendChat = async () => {
     if (!text.trim() || waiting) {
@@ -32,7 +43,7 @@ const Chat = () => {
 
     setChats(_chats);
 
-    const claudePrompt = formatClaudePrompt(_chats)
+    const claudePrompt = formatClaudePrompt(_chats, assistantRole?.prompt)
 
     setText('');
     setWaiting(true);
@@ -61,10 +72,7 @@ const Chat = () => {
     <>
       {/* Header */}
       <div
-        className="top-0 fixed bg-white shadow-lg flex justify-center items-center p-2 z-50"
-        style={{
-          width: 'calc(100% - 320px)',
-        }}
+        className="top-0 fixed min-w-full bg-white shadow-lg flex justify-center items-center p-2 z-50"
       >
         <div className="text-center">
           <p className="font-bold">新聊天</p>
@@ -75,21 +83,30 @@ const Chat = () => {
         <div className="max-w-2xl mx-auto mt-9">
           <Intro />
 
-          <FunctionalZone />
-
-          <div className="pb-24">
+          <div className="mb-32" ref={chatWrapperRef}>
             { chats && <ChatRecord chats={chats} />}
+
+            { assistantRole
+              ? (<div className="px-4 flex items-center justify-center mt-8 mb-2">
+                  <p className="text-sm text-gray-500 px-4 py-1 rounded-ful dark:invert">
+                    当前正在跟 <span className="font-bold text-black">{assistantRole.title}</span> 聊天
+                  </p>
+              </div>)
+              : null
+            }
           </div>
 
         </div>
       </div>
 
 
-        {/* Footer */}
-      <div className="fixed bottom-0 pt-4 bg-white z-50" style={{
-        width: 'calc(100% - 320px)',
-      }}>
+      {/* Footer */}
+      <div className="fixed min-w-full bottom-0 py-4 bg-white z-50">
         <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
+          <div className="pb-2">
+            <FunctionalZone />
+          </div>
+
           <div className="w-full flex">
             <textarea
               value={text}

@@ -1,5 +1,5 @@
 declare interface ChatMessage {
-  date: Date;
+  date: string;
   role: 'assistant' | 'user';
   text: string;
   id?: string;

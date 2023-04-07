@@ -24,10 +24,10 @@ export default function Home() {
       <main className="flex">
         <OpenaiKeyProvider>
           {/* Left Menu */}
-          <div style={{ width: '320px' }} className="max-h-screen bg-gray-800 flex flex-col justify-between">
+          {/* <div style={{ width: '320px' }} className="max-h-screen bg-gray-800 flex flex-col justify-between">
             <LeftMenu />
             <Settings />
-          </div>
+          </div> */}
 
           {/* Right Menu */}
           <div className="flex-1">

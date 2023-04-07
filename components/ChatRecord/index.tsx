@@ -23,7 +23,7 @@ const ChatRecord = ({ chats = [] } : ChatRecordProps) => {
     <div>
       { chats.map((chat) => (
         <div
-          key={chat.id}
+          key={chat.date}
           className="flex items-center px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
         >
           <AvatarComponent chat={chat} />
