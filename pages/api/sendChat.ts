@@ -1,19 +1,18 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { ChatGPTAPI } from 'chatgpt';
-import { builtinPrompts } from '../../data/prompts';
 
-import { client as claudeClient, AI_PROMPT, HUMAN_PROMPT } from '../../services/claude';
+import { client as claudeClient, HUMAN_PROMPT } from '../../services/claude';
 
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ChatMessage>
+  res: NextApiResponse<ChatMessage | any>
 ) {
-  const { text, id } = req.body;
-  const prompt = builtinPrompts.find((p) => p.id === id)?.prompt;
+  const { text } = req.body;
 
-  console.log('----kaishi---')
+  console.log(text)
+
 
   // const officialApi = new ChatGPTAPI({
   //   apiKey: process.env.OPENAI_API_KEY ?? '',
@@ -30,7 +29,6 @@ export default async function handler(
   //   // systemMessage: prompt,
   // })
   // console.log('chatRes---', chatRes, prompt + text)
-  console.log('text', text)
   try {
     const claudeResponse = await claudeClient.complete({
       prompt: text,
@@ -39,28 +37,15 @@ export default async function handler(
       model: "claude-v1",
     });
 
+
     return res.status(200).json({
-      date: (new Date()).toString(),
+      date: Date.now(),
       role: 'assistant',
       text: claudeResponse.completion,
     })
   } catch (e: any) {
-    // res.status(500).json({
-    //   error: e.message,
-    // })
+    res.status(500).json({
+      error: e.message,
+    })
   }
-
-    // .then((completion) => {
-    //   console.log(completion);
-    // })
-    // .catch((error) => {
-    //   console.error(error);
-    // });
-    
-  //   const mockRes = {
-  //     id: '123434',
-  //     "role": "assistant" as any,
-  //     "text": "Hey there, Mr. Yo! Is that some sort of new yoghurt brand or are you just excited to see me?"
-  //   }
-  // res.status(200).json(mockRes)
 }

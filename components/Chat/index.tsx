@@ -12,17 +12,17 @@ import { useLocalStorage } from 'react-use';
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
 const Chat = () => {
-  const { value, setValue } = useAssistantRole();
+  const { value } = useAssistantRole();
   const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
-  // const [chats, setChats] = useState<ChatMessage[]>([]);
   const [waiting, setWaiting] = useState<boolean>(false);
-  const assistantRole = builtinPrompts.find((p) => p.id === value);
+  const assistantRole = builtinPrompts.find((p) => p.id === value) ?? builtinPrompts[0];
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
 
   useEffect(() => {
     if (chats?.length && chatWrapperRef.current) {
+      console.log('aaaa', chatWrapperRef.current.scrollTop, chatWrapperRef.current.scrollHeight)
       chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
     }
   }, [chats]);
@@ -37,13 +37,14 @@ const Chat = () => {
       {
         role: 'user',
         text,
-        date: (new Date()).toUTCString(),
+        date: Date.now(),
+        conversationId: assistantRole?.id,
       }
     ];
 
     setChats(_chats);
 
-    const claudePrompt = formatClaudePrompt(_chats, assistantRole?.prompt)
+    const claudePrompt = formatClaudePrompt(_chats, assistantRole)
 
     setText('');
     setWaiting(true);
@@ -60,16 +61,12 @@ const Chat = () => {
       })
     });
 
-    console.log('gptResponse', gptResponse)
-
     setWaiting(false);
-    setChats([ ..._chats, gptResponse,
-]);
-
+    setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
   }
 
   return (
-    <>
+    <div>
       {/* Header */}
       <div
         className="top-0 fixed min-w-full bg-white shadow-lg flex justify-center items-center p-2 z-50"
@@ -79,11 +76,12 @@ const Chat = () => {
           <p className="text-gray-400 text-xs">开启一个新聊天</p>
         </div>
       </div>
-      <div className="max-h-screen overflow-y-scroll">
+
+      <div ref={chatWrapperRef} className="overflow-scroll max-h-screen">
         <div className="max-w-2xl mx-auto mt-9">
           <Intro />
 
-          <div className="mb-32" ref={chatWrapperRef}>
+          <div className="mb-32">
             { chats && <ChatRecord chats={chats} />}
 
             { assistantRole
@@ -134,7 +132,7 @@ const Chat = () => {
           <p className="mt-2 text-gray-400 text-xs text-center">easierChat.com - 一个更方便、易用的 chatGPT 客户端</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

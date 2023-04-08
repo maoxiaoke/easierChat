@@ -1,15 +1,16 @@
-export const formatClaudePrompt = (chats: ChatMessage[], prompt: string = ''): string => {
-  if (chats.length === 0) {
+export const formatClaudePrompt = (chats: ChatMessage[], assistant: AssistantRole): string => {
+  const _chats = chats.filter(chat => chat.conversationId === assistant.id);
+  if (_chats.length === 0) {
     return '';
   }
 
-  return chats
+  return _chats
     .reduce((pre, chat) => {
       if (chat.role === 'user') {
         return `${pre}Human: ${chat.text}\n\n`
       }
       return `${pre}Assistant: ${chat.text}\n\n`
 
-    }, `\n\nHuman: ${prompt} \n\n`)
+    }, `\n\nHuman: ${assistant.prompt} \n\n`)
     .concat('Assistant:');
 }
