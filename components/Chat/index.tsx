@@ -100,7 +100,11 @@ const Chat = () => {
             }]} />}
 
             {
-
+              err && <ChatRecord chats={[{
+                role: 'assistant',
+                text: err,
+                date: Date.now(),
+              }]} />
             }
 
             { assistantRole

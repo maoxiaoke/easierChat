@@ -2,15 +2,19 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import LeftMenu from '../components/LeftMenu';
 import Settings from '../components/Settings';
+// import ContextMenu from '../components/ContextMenu';
 import { AssistantRoleProvider } from '../contexts/assistant';
 import { OpenaiKeyProvider } from '../contexts/openaiKey';
 
 const Chat = dynamic(() => import('../components/Chat'), { ssr: false });
+const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: false });
 // import Image from 'next/image'
 // import { Inter } from 'next/font/google'
 // import styles from '@/styles/Home.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })
+
+
 
 export default function Home() {
   return (
@@ -32,7 +36,9 @@ export default function Home() {
           {/* Right Menu */}
           <div className="flex-1">
             <AssistantRoleProvider>
-              <Chat />
+              <ContextMenu >
+                <Chat />
+              </ContextMenu>
             </AssistantRoleProvider>
           </div>
         </OpenaiKeyProvider>
