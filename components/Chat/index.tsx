@@ -66,7 +66,7 @@ const Chat = () => {
   }
 
   return (
-    <div>
+    <>
       {/* Header */}
       <div
         className="top-0 fixed min-w-full bg-white shadow-lg flex justify-center items-center p-2 z-50"
@@ -77,8 +77,10 @@ const Chat = () => {
         </div>
       </div>
 
-      <div ref={chatWrapperRef} className="overflow-scroll max-h-screen">
-        <div className="max-w-2xl mx-auto mt-9">
+      <div ref={chatWrapperRef} className="overflow-y-scroll mt-14" style={{
+        height: 'calc(100vh - 56px - 132px)',
+      }}>
+        <div className="max-w-2xl mx-auto">
           <Intro />
 
           <div className="mb-32">
@@ -132,7 +134,7 @@ const Chat = () => {
           <p className="mt-2 text-gray-400 text-xs text-center">easierChat.com - 一个更方便、易用的 chatGPT 客户端</p>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
