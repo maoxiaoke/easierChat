@@ -22,8 +22,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (chats?.length && chatWrapperRef.current) {
-      console.log('aaaa', chatWrapperRef.current.scrollTop, chatWrapperRef.current.scrollHeight)
-      chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight;
+      chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight + 20;
     }
   }, [chats]);
 
@@ -66,7 +65,7 @@ const Chat = () => {
   }
 
   return (
-    <>
+    <div className="h-screen overflow-y-auto" ref={chatWrapperRef}>
       {/* Header */}
       <div
         className="top-0 fixed min-w-full bg-white shadow-lg flex justify-center items-center p-2 z-50"
@@ -77,13 +76,11 @@ const Chat = () => {
         </div>
       </div>
 
-      <div ref={chatWrapperRef} className="overflow-y-scroll mt-14" style={{
-        height: 'calc(100vh - 56px - 132px)',
-      }}>
+      <div className="mt-14 mb-32">
         <div className="max-w-2xl mx-auto">
           <Intro />
 
-          <div className="mb-32">
+          <div>
             { chats && <ChatRecord chats={chats} />}
 
             { assistantRole
@@ -134,7 +131,7 @@ const Chat = () => {
           <p className="mt-2 text-gray-400 text-xs text-center">easierChat.com - 一个更方便、易用的 chatGPT 客户端</p>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
