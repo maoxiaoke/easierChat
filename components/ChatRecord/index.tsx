@@ -6,10 +6,10 @@ export interface ChatRecordProps {
 }
 
 const AvatarComponent = ({ chat }: { chat: ChatMessage }) => (
-  <Avatar.Root className="AvatarRoot min-w-fit">
+  <Avatar.Root className="AvatarRoot flex-shrink-0">
     <Avatar.Image
       className="AvatarImage"
-      src={chat.role === 'user' ? "/profile.png" : '/chatGPT.png'}
+      src={chat.role === 'user' ? "/profile.png" : '/chat_gpt.png'}
       alt="portrait"
     />
     <Avatar.Fallback className="AvatarFallback" delayMs={600}>

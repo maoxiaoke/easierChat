@@ -35,7 +35,7 @@ const Intro = () => {
         <div className="my-4 grid sm:grid-cols-2 gap-y-2 gap-x-6">
           {
             descs.map((desc, idx) => (
-              <Lottie data={tick} key={idx} iconStyle={{ height: '20px' }} className="flex items-center">
+              <Lottie data={tick} key={idx} iconStyle={{ height: '20px', width: '20px' }} className="flex items-center">
                 <div className="ml-1">{desc}</div>
               </Lottie>
             ))

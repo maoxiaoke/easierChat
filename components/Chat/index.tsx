@@ -13,6 +13,7 @@ const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false }
 
 const Chat = () => {
   const { value } = useAssistantRole();
+  const [err, setErr] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
   const [waiting, setWaiting] = useState<boolean>(false);
@@ -48,20 +49,28 @@ const Chat = () => {
     setText('');
     setWaiting(true);
 
-    const gptResponse = await fetcher('/api/sendChat', {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: "POST",
-      body: JSON.stringify({
-        text: claudePrompt,
-        id: '1',
-      })
-    });
-
-    setWaiting(false);
-    setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+    try {
+      const gptResponse = await fetcher('/api/sendChat', {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({
+          text: claudePrompt,
+          id: '1',
+        })
+      });
+      setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+    } catch (e) {
+      // if (e instanceof Error) {
+      //   setErr(e.message);
+      // }
+      setErr('我的服务器好像遇到点问题，你可以稍后再试试。')
+      // setErr('Something went wrong, please try again later.')
+    } finally {
+      setWaiting(false);
+    }
   }
 
   return (
@@ -82,6 +91,17 @@ const Chat = () => {
 
           <div>
             { chats && <ChatRecord chats={chats} />}
+
+            {/* 这里要替换掉 */}
+            { waiting && <ChatRecord chats={[{
+              role: 'assistant',
+              text: '...',
+              date: Date.now(),
+            }]} />}
+
+            {
+
+            }
 
             { assistantRole
               ? (<div className="px-4 flex items-center justify-center mt-8 mb-2">
