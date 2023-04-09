@@ -1,12 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ChatRecord from '../ChatRecord';
+import ChatRecord, { AvatarComponent } from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
 import dynamic from 'next/dynamic';
 import { builtinPrompts } from '../../data/prompts';
 import { useAssistantRole } from '../../contexts/assistant';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useLocalStorage } from 'react-use';
 
@@ -17,7 +18,7 @@ const Chat = () => {
   const [err, setErr] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
-  const [waiting, setWaiting] = useState<boolean>(false);
+  const [waitingText, setWaiting] = useState<string>('');
   const assistantRole = builtinPrompts.find((p) => p.id === value) ?? builtinPrompts[0];
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
@@ -26,10 +27,10 @@ const Chat = () => {
     if (chats?.length && chatWrapperRef.current) {
       chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight + 20;
     }
-  }, [chats]);
+  }, [chats, waitingText]);
 
   const sendChat = async () => {
-    if (!text.trim() || waiting) {
+    if (!text.trim() || !!waitingText) {
       return;
     }
 
@@ -37,6 +38,7 @@ const Chat = () => {
       ...(chats ?? []),
       {
         role: 'user',
+        id: uuidv4(),
         text,
         date: Date.now(),
         conversationId: assistantRole?.id,
@@ -48,26 +50,71 @@ const Chat = () => {
     const claudePrompt = formatClaudePrompt(_chats, assistantRole)
 
     setText('');
-    setWaiting(true);
+    setWaiting('');
 
     try {
-      const gptResponse = await fetcher('/api/sendChat', {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+      // const gptResponse = await fetcher('/api/sendChat', {
+      //   headers: {
+      //     'Accept': 'application/json',
+      //     'Content-Type': 'application/json'
+      //   },
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     text: claudePrompt,
+      //     id: '1',
+      //   })
+      // });
+
+      const response = await fetch("/api/sse", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
           text: claudePrompt,
-          id: '1',
-        })
+        }),
       });
 
-      if (gptResponse?.error) {
-        throw new Error(gptResponse.error);
+      if (!response.ok) {
+        throw new Error(response.statusText);
       }
 
-      setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+      const data = response.body;
+      if (!data) {
+        return;
+      }
+
+      const reader = data.getReader();
+      const decoder = new TextDecoder();
+      let done = false;
+
+      let chunkValue = '';
+      while (!done) {
+        const { value, done: doneReading } = await reader.read();
+        done = doneReading;
+        if (!done) {
+          chunkValue = decoder.decode(value);
+          setWaiting(chunkValue);
+        } else {
+          setChats([ ..._chats, {
+            id: uuidv4(),
+            date: Date.now(),
+            role: 'assistant',
+            text: chunkValue,
+            conversationId: assistantRole?.id
+          } ]);
+
+          setWaiting('');
+        }
+
+        // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+      }
+
+      // if (gptResponse?.error) {
+      //   throw new Error(gptResponse.error);
+      // }
+
+      // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
     } catch (e) {
       // if (e instanceof Error) {
       //   setErr(e.message);
@@ -75,7 +122,7 @@ const Chat = () => {
       setErr('我的服务器好像遇到点问题，你可以稍后再试试。')
       // setErr('Something went wrong, please try again later.')
     } finally {
-      setWaiting(false);
+      setWaiting('');
     }
   }
 
@@ -91,7 +138,7 @@ const Chat = () => {
         </div>
       </div>
 
-      <div className="mt-14 mb-32">
+      <div className="mt-14 mb-40 sm:mb-32">
         <div className="max-w-2xl mx-auto">
           <Intro />
 
@@ -99,11 +146,16 @@ const Chat = () => {
             { chats && <ChatRecord chats={chats} />}
 
             {/* 这里要替换掉 */}
-            { waiting && <ChatRecord chats={[{
-              role: 'assistant',
-              text: '...',
-              date: Date.now(),
-            }]} />}
+            { !!waitingText && (
+                <div
+                  className="flex items-start px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
+                >
+                  <AvatarComponent role='assistant' />
+                <div className="ml-3 text-sm whitespace-pre-line focus:outline">
+                  { waitingText }
+                </div>
+              </div>
+            )}
 
             {
               err && <ChatRecord chats={[{
@@ -154,7 +206,7 @@ const Chat = () => {
               type="button"
               className="inline-flex ml-2 items-center px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-default transition-colors whitespace-nowrap space-x-1"
               onClick={sendChat}
-              disabled={waiting}
+              disabled={!!waitingText}
             > → 发送</button>
           </div>
 

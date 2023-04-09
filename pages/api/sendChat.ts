@@ -33,7 +33,7 @@ export default async function handler(
     const claudeResponse = await claudeClient.complete({
       prompt: text,
       stop_sequences: [HUMAN_PROMPT],
-      max_tokens_to_sample: 1000,
+      max_tokens_to_sample: 200,
       model: "claude-instant-v1",
     });
 
