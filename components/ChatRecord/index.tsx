@@ -33,7 +33,7 @@ const ChatRecords = ({ chats = [] } : ChatRecordProps) => {
 }
 
 const ChatRecord = ({ chat }: { chat: ChatMessage }) => {
-  const text  = useThrottle(chat.text, { wait: 900 })
+  const text  = useThrottle(chat.text, { wait: 500 })
   return (
     <div
       className="flex items-start px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"

@@ -95,15 +95,20 @@ const Chat = () => {
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
         if (!done) {
-          chunkValue = decoder.decode(value);
+          const _chunkValue = decoder.decode(value);
 
-          setChats([ ..._chats, {
-            id: chatId,
-            date: chatDate,
-            role: 'assistant',
-            text: chunkValue,
-            conversationId: assistantRole?.id
-          } ]);
+          // FIXME: 这里有点奇怪，数据不是按序返回的
+          if (!chunkValue.includes(_chunkValue)) {
+            chunkValue = _chunkValue;
+            setChats([ ..._chats, {
+              id: chatId,
+              date: chatDate,
+              role: 'assistant',
+              text: chunkValue,
+              conversationId: assistantRole?.id
+            } ]);
+          }
+
         }
 
         // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);

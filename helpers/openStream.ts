@@ -27,9 +27,6 @@ export async function OpenAIStream(payload: any) {
         if (event.type === "event") {
           const data = event.data;
 
-          console.log('aaa', data)
-
-
           if (data === '[DONE]') {
             controller.close();
             return;
@@ -39,6 +36,8 @@ export async function OpenAIStream(payload: any) {
             const json = JSON.parse(data);
 
             const text = json.completion;
+
+            // console.log('aaa', text)
 
             const queue = encoder.encode(text);
             controller.enqueue(queue);

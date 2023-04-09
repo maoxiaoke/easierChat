@@ -1,5 +1,5 @@
 import { OpenAIStream } from "../../helpers/openStream";
-import {HUMAN_PROMPT } from '../../services/claude';
+import { HUMAN_PROMPT } from '../../services/claude';
 
 export const config = {
   runtime: "edge",
