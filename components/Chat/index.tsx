@@ -62,6 +62,11 @@ const Chat = () => {
           id: '1',
         })
       });
+
+      if (gptResponse?.error) {
+        throw new Error(gptResponse.error);
+      }
+
       setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
     } catch (e) {
       // if (e instanceof Error) {
