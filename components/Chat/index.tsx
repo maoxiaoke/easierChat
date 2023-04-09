@@ -155,7 +155,7 @@ const Chat = () => {
 
           <p className="mt-2 text-gray-400 text-xs text-center">
             <span className="inline-block mr-2 text-gray-500">easierChat.com - 一个更方便、易用的 chatGPT 客户端</span>
-            <Link href='/'>FAQs</Link> | <Link href="https://twitter.com/xiaokedada">@那吒</Link> | <Link href="mailto: maoxiaoke@outlook.com">提交反馈</Link>
+            <Link href='/'>FAQs</Link> | <Link href="https://twitter.com/xiaokedada">@那吒</Link> | <Link href="mailto: maoxiaoke@outlook.com">提交反馈</Link> | <Link href="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/others/easierChat.dmg">macOS 客户端</Link>
           </p>
         </div>
       </div>
