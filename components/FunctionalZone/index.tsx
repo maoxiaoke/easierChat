@@ -22,12 +22,12 @@ const RoleSelection = ({ onChange }: { onChange: (p: AssistantRole) => void}) =>
     </Dialog.Trigger>
     <Dialog.Portal>
       {/* <Dialog.Overlay className="DialogOverlay" /> */}
-      <Dialog.Content className="DialogContent">
+      <Dialog.Content className="DialogContent w-full sm:max-w-[90vw] sm:w-fit">
         <Dialog.Title className="DialogTitle">选择角色</Dialog.Title>
         {/* <Dialog.Description className="DialogDescription">
           Make changes to your profile here. Click save when you're done.
         </Dialog.Description> */}
-        <ul className="List two">
+        <ul className="List two overflow-y-auto">
           {
             builtinPrompts.map((prompt) => (
               <Dialog.Close asChild key={prompt.id}>
