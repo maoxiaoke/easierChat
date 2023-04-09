@@ -11,7 +11,7 @@ export async function OpenAIStream(payload: any) {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json;charset=utf-8",
+      "Content-Type": "application/json",
       Client: CLIENT_ID,
       "X-API-Key": process.env.ANTHROPIC_API_KEY ?? "",
     },
