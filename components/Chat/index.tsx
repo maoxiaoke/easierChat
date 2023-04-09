@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ChatRecord, { AvatarComponent } from '../ChatRecord';
+import ChatRecord from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
@@ -18,7 +18,7 @@ const Chat = () => {
   const [err, setErr] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
-  const [waitingText, setWaiting] = useState<string>('');
+  const [waiting, setWaiting] = useState<boolean>(false);
   const assistantRole = builtinPrompts.find((p) => p.id === value) ?? builtinPrompts[0];
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
@@ -27,10 +27,10 @@ const Chat = () => {
     if (chats?.length && chatWrapperRef.current) {
       chatWrapperRef.current.scrollTop = chatWrapperRef.current.scrollHeight + 20;
     }
-  }, [chats, waitingText]);
+  }, [chats]);
 
   const sendChat = async () => {
-    if (!text.trim() || !!waitingText) {
+    if (!text.trim() || waiting) {
       return;
     }
 
@@ -50,7 +50,7 @@ const Chat = () => {
     const claudePrompt = formatClaudePrompt(_chats, assistantRole)
 
     setText('');
-    setWaiting('');
+    setWaiting(true);
 
     try {
       // const gptResponse = await fetcher('/api/sendChat', {
@@ -86,25 +86,24 @@ const Chat = () => {
 
       const reader = data.getReader();
       const decoder = new TextDecoder();
-      let done = false;
 
+      let done = false;
       let chunkValue = '';
+      const chatId = uuidv4();
+      const chatDate = Date.now();
       while (!done) {
         const { value, done: doneReading } = await reader.read();
         done = doneReading;
         if (!done) {
           chunkValue = decoder.decode(value);
-          setWaiting(chunkValue);
-        } else {
+
           setChats([ ..._chats, {
-            id: uuidv4(),
-            date: Date.now(),
+            id: chatId,
+            date: chatDate,
             role: 'assistant',
             text: chunkValue,
             conversationId: assistantRole?.id
           } ]);
-
-          setWaiting('');
         }
 
         // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
@@ -122,7 +121,7 @@ const Chat = () => {
       setErr('我的服务器好像遇到点问题，你可以稍后再试试。')
       // setErr('Something went wrong, please try again later.')
     } finally {
-      setWaiting('');
+      setWaiting(false);
     }
   }
 
@@ -146,16 +145,16 @@ const Chat = () => {
             { chats && <ChatRecord chats={chats} />}
 
             {/* 这里要替换掉 */}
-            { !!waitingText && (
+            {/* { !!waiting && (
                 <div
                   className="flex items-start px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
                 >
                   <AvatarComponent role='assistant' />
                 <div className="ml-3 text-sm whitespace-pre-line focus:outline">
-                  { waitingText }
+                  { waiting }
                 </div>
               </div>
-            )}
+            )} */}
 
             {
               err && <ChatRecord chats={[{
@@ -206,7 +205,7 @@ const Chat = () => {
               type="button"
               className="inline-flex ml-2 items-center px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-default transition-colors whitespace-nowrap space-x-1"
               onClick={sendChat}
-              disabled={!!waitingText}
+              disabled={!!waiting}
             > → 发送</button>
           </div>
 

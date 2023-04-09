@@ -10,8 +10,6 @@ const handler = async (req: Request): Promise<Response> => {
     text?: string;
   };
 
-  console.log('fsdfsafs', text)
-
   const payload = {
     prompt: text,
     stop_sequences: [HUMAN_PROMPT],
