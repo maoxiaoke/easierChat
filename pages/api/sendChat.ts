@@ -34,7 +34,7 @@ export default async function handler(
       prompt: text,
       stop_sequences: [HUMAN_PROMPT],
       max_tokens_to_sample: 1000,
-      model: "claude-v1.2",
+      model: "claude-instant-v1",
     });
 
     return res.status(200).json({
