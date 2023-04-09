@@ -11,7 +11,7 @@ export async function OpenAIStream(payload: any) {
     method: "POST",
     headers: {
       Accept: "application/json",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json;charset=utf-8",
       Client: CLIENT_ID,
       "X-API-Key": process.env.ANTHROPIC_API_KEY ?? "",
     },
@@ -26,6 +26,9 @@ export async function OpenAIStream(payload: any) {
       function onParse(event: ParsedEvent | ReconnectInterval) {
         if (event.type === "event") {
           const data = event.data;
+
+          console.log('aaa', data)
+
 
           if (data === '[DONE]') {
             controller.close();
