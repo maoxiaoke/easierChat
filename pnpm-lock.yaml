@@ -12,6 +12,7 @@ specifiers:
   '@types/node': 18.15.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@vercel/analytics': ^0.1.11
   autoprefixer: ^10.4.14
   chatgpt: ^5.0.10
   classnames: ^2.3.2
@@ -41,6 +42,7 @@ dependencies:
   '@types/node': 18.15.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
+  '@vercel/analytics': 0.1.11_react@18.2.0
   autoprefixer: 10.4.14_postcss@8.4.21
   chatgpt: 5.2.2
   classnames: 2.3.2
@@ -895,6 +897,14 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.57.1
       eslint-visitor-keys: 3.4.0
+    dev: false
+
+  /@vercel/analytics/0.1.11_react@18.2.0:
+    resolution: {integrity: sha512-mj5CPR02y0BRs1tN3oZcBNAX9a8NxsIUl9vElDPcqxnMfP0RbRc9fI9Ud7+QDg/1Izvt5uMumsr+6YsmVHcyuw==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@xobotyi/scrollbar-width/1.9.5:
