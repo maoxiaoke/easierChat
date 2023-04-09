@@ -29,7 +29,7 @@ const Intro = () => {
         </div>
 
         <div className="text-center font-light text-base sm:text-xl my-4 sm:my-6 text-black dark:text-white">
-        一个更方便、易用的 chatGPT 客户端
+        一个更方便、易用的 chatBot 客户端
         </div>
 
         <div className="my-4 grid sm:grid-cols-2 gap-y-2 gap-x-6">
