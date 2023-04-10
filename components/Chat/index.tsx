@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ChatRecord from '../ChatRecord';
+import ChatRecords, { ChatRecord } from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
@@ -53,78 +53,80 @@ const Chat = () => {
     setWaiting(true);
 
     try {
-      // const gptResponse = await fetcher('/api/sendChat', {
-      //   headers: {
-      //     'Accept': 'application/json',
-      //     'Content-Type': 'application/json'
-      //   },
-      //   method: "POST",
-      //   body: JSON.stringify({
-      //     text: claudePrompt,
-      //     id: '1',
-      //   })
-      // });
-
-      const response = await fetch("/api/sse", {
-        method: "POST",
+      const gptResponse = await fetcher('/api/sendChat', {
         headers: {
-          "Content-Type": "application/json",
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
+        method: "POST",
         body: JSON.stringify({
           text: claudePrompt,
-        }),
+          id: '1',
+        })
       });
 
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
+      // const response = await fetch("/api/sse", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({
+      //     text: claudePrompt,
+      //   }),
+      // });
 
-      const data = response.body;
-      if (!data) {
-        return;
-      }
-
-      const reader = data.getReader();
-      const decoder = new TextDecoder();
-
-      let done = false;
-      let chunkValue = '';
-      const chatId = uuidv4();
-      const chatDate = Date.now();
-      while (!done) {
-        const { value, done: doneReading } = await reader.read();
-        done = doneReading;
-        if (!done) {
-          const _chunkValue = decoder.decode(value);
-
-          // FIXME: 这里有点奇怪，数据不是按序返回的
-          if (!chunkValue.includes(_chunkValue)) {
-            chunkValue = _chunkValue;
-            setChats([ ..._chats, {
-              id: chatId,
-              date: chatDate,
-              role: 'assistant',
-              text: chunkValue,
-              conversationId: assistantRole?.id
-            } ]);
-          }
-
-        }
-
-        // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
-      }
-
-      // if (gptResponse?.error) {
-      //   throw new Error(gptResponse.error);
+      // if (!response.ok) {
+      //   throw new Error(response.statusText);
       // }
 
-      // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+      // const data = response.body;
+      // if (!data) {
+      //   return;
+      // }
+
+      // const reader = data.getReader();
+      // const decoder = new TextDecoder();
+
+      // let done = false;
+      // let chunkValue = '';
+      // const chatId = uuidv4();
+      // const chatDate = Date.now();
+
+      // while (!done) {
+      //   const { value, done: doneReading } = await reader.read();
+      //   done = doneReading;
+      //   if (!done) {
+      //     const _chunkValue = decoder.decode(value);
+
+      //     // FIXME: 这里有点奇怪，数据不是按序返回的
+      //     if (!chunkValue.includes(_chunkValue)) {
+      //       chunkValue = _chunkValue;
+      //       console.log('chunkValue', chunkValue);
+      //       setChats([ ..._chats, {
+      //         id: chatId,
+      //         date: chatDate,
+      //         role: 'assistant',
+      //         text: chunkValue,
+      //         conversationId: assistantRole?.id
+      //       } ]);
+      //     }
+
+      //   }
+
+      //   // setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+      // }
+
+      if (gptResponse?.error) {
+        throw new Error(gptResponse.error);
+      }
+
+      setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
     } catch (e) {
-      // if (e instanceof Error) {
-      //   setErr(e.message);
-      // }
+      if (e instanceof Error) {
+        setErr(e.message);
+      }
       setErr('我的服务器好像遇到点问题，你可以稍后再试试。')
-      // setErr('Something went wrong, please try again later.')
+      setErr('Something went wrong, please try again later.')
     } finally {
       setWaiting(false);
     }
@@ -147,7 +149,20 @@ const Chat = () => {
           <Intro />
 
           <div>
-            { chats && <ChatRecord chats={chats} />}
+            { chats && <ChatRecords chats={chats} />}
+
+            { waiting && (
+              <div> </div>
+            )}
+
+            { waiting && (
+              <ChatRecord chat={{
+                role: 'assistant',
+                id: uuidv4(),
+                text: '...',
+                date: Date.now(),
+              }} />
+            )}
 
             {/* 这里要替换掉 */}
             {/* { !!waiting && (
@@ -162,7 +177,7 @@ const Chat = () => {
             )} */}
 
             {
-              err && <ChatRecord chats={[{
+              err && <ChatRecords chats={[{
                 role: 'assistant',
                 text: err,
                 date: Date.now(),
