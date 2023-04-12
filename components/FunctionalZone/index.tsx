@@ -64,7 +64,6 @@ const ListItem = ({ className, children, title, onClick }: ListItemProps ) => (
   </li>
 );
 
-
 const FunctionalZone = () => {
   const { setValue } = useAssistantRole();
 

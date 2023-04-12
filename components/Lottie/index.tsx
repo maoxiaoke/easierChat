@@ -8,9 +8,14 @@ export interface LottieProps {
   children?: React.ReactNode;
   className?: string;
   data: any;
+  loop?: boolean;
+  autoPlay?: boolean;
+
+  /* 是否实现进入播放效果 */
+  isMoveOver?: boolean;
 }
 
-const Lottie = ({ iconStyle, children, className, data }: LottieProps) => {
+const Lottie = ({ iconStyle, children, className, data, loop = false, autoPlay = false, isMoveOver = false }: LottieProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<AnimationItem>();
 
@@ -22,8 +27,8 @@ const Lottie = ({ iconStyle, children, className, data }: LottieProps) => {
     const animation = lottie.loadAnimation({
       container: containerRef.current,
       renderer: 'svg',
-      loop: false,
-      autoplay: false,
+      loop,
+      autoplay: autoPlay,
       animationData: data,
     });
 
@@ -35,7 +40,7 @@ const Lottie = ({ iconStyle, children, className, data }: LottieProps) => {
   }, []);
 
   const handleMouseEnter = () => {
-    if (!animationRef.current) {
+    if (!animationRef.current || !isMoveOver) {
       return;
     }
     animationRef.current.play();
@@ -43,7 +48,7 @@ const Lottie = ({ iconStyle, children, className, data }: LottieProps) => {
   };
 
   const handleMouseLeave = () => {
-    if (!animationRef.current) {
+    if (!animationRef.current  || !isMoveOver) {
       return;
     }
     animationRef.current.loop = false;

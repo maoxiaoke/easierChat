@@ -8,8 +8,6 @@
   vertical-align: middle;
   overflow: hidden;
   user-select: none;
-  width: 45px;
-  height: 45px;
   border-radius: 100%;
   background-color: var(--blackA3);
 }

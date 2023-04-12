@@ -1,13 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ChatRecords, { ChatRecord } from '../ChatRecord';
+import ChatRecords, { ChatRecord, AvatarComponent } from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
 import dynamic from 'next/dynamic';
 import { builtinPrompts } from '../../data/prompts';
 import { useAssistantRole } from '../../contexts/assistant';
+import { useModelSetting } from '../../contexts/modelSetting';
 import { v4 as uuidv4 } from 'uuid';
+import Lottie from '../Lottie';
+import dot from '../../lottie/dot.json'
 
 import { useLocalStorage } from 'react-use';
 
@@ -15,6 +18,7 @@ const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false }
 
 const Chat = () => {
   const { value } = useAssistantRole();
+  const { value: modelSetting } = useModelSetting();
   const [err, setErr] = useState('');
   const chatWrapperRef = useRef<HTMLDivElement>(null);
   const [text, setText] = useState<string>('');
@@ -62,6 +66,9 @@ const Chat = () => {
         body: JSON.stringify({
           text: claudePrompt,
           id: '1',
+          model: modelSetting?.model,
+          temperature: modelSetting?.temperature,
+          maxTokens: modelSetting?.maxTokens,
         })
       });
 
@@ -126,7 +133,6 @@ const Chat = () => {
         setErr(e.message);
       }
       setErr('我的服务器好像遇到点问题，你可以稍后再试试。')
-      setErr('Something went wrong, please try again later.')
     } finally {
       setWaiting(false);
     }
@@ -151,30 +157,18 @@ const Chat = () => {
           <div>
             { chats && <ChatRecords chats={chats} />}
 
-            { waiting && (
-              <div> </div>
-            )}
-
-            { waiting && (
-              <ChatRecord chat={{
-                role: 'assistant',
-                id: uuidv4(),
-                text: '...',
-                date: Date.now(),
-              }} />
-            )}
-
             {/* 这里要替换掉 */}
-            {/* { !!waiting && (
+            { waiting && (
                 <div
-                  className="flex items-start px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
+                  className="flex items-center px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
                 >
                   <AvatarComponent role='assistant' />
-                <div className="ml-3 text-sm whitespace-pre-line focus:outline">
-                  { waiting }
+                <div className="ml-3 text-sm focus:outline flex items-center">
+                  <span className="inline-block mr-1">我假装在思考中</span> <Lottie data={dot} autoPlay loop iconStyle={{ width: '32px' }} />
+                  <div></div>
                 </div>
               </div>
-            )} */}
+            )}
 
             {
               err && <ChatRecords chats={[{
@@ -185,10 +179,14 @@ const Chat = () => {
             }
 
             { assistantRole
-              ? (<div className="px-4 flex items-center justify-center mt-8 mb-2">
+              ? (<div className="px-4 mt-8 mb-2 flex flex-col justify-center items-center">
                   <p className="text-sm text-gray-500 px-4 py-1 rounded-ful dark:invert">
                     当前正在跟 <span className="font-bold text-black">{assistantRole.title}</span> 聊天
                   </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    <Link href="/" className="text-blue-600">模型</Link>：{modelSetting?.model ?? 'claude-instant-v1'}
+                    <Link href="/" className="text-blue-600 inline-block ml-1">温度</Link>：{modelSetting?.temperature ?? 0.7}
+                    <Link href="/" className="text-blue-600 inline-block ml-1">生成长度</Link>：{modelSetting?.maxTokens ?? 400}</p>
               </div>)
               : null
             }

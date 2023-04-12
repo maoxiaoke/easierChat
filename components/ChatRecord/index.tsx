@@ -8,7 +8,7 @@ export interface ChatRecordProps {
 }
 
 export const AvatarComponent = ({ role }: { role: ChatMessage['role'] }) => (
-  <Avatar.Root className="AvatarRoot flex-shrink-0">
+  <Avatar.Root className="AvatarRoot flex-shrink-0 w-11 h-11">
     <Avatar.Image
       className="AvatarImage"
       src={role === 'user' ? "/profile.png" : '/chat_gpt.png'}

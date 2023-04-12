@@ -5,6 +5,7 @@ import Settings from '../components/Settings';
 // import ContextMenu from '../components/ContextMenu';
 import { AssistantRoleProvider } from '../contexts/assistant';
 import { OpenaiKeyProvider } from '../contexts/openaiKey';
+import { ModelSettingProvider } from '../contexts/modelSetting';
 
 const Chat = dynamic(() => import('../components/Chat'), { ssr: false });
 const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: false });
@@ -13,8 +14,6 @@ const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: fa
 // import styles from '@/styles/Home.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })
-
-
 
 export default function Home() {
   return (
@@ -36,9 +35,11 @@ export default function Home() {
           {/* Right Menu */}
           <div className="flex-1">
             <AssistantRoleProvider>
-              <ContextMenu >
-                <Chat />
-              </ContextMenu>
+              <ModelSettingProvider>
+                <ContextMenu >
+                  <Chat />
+                </ContextMenu>
+              </ModelSettingProvider>
             </AssistantRoleProvider>
           </div>
         </OpenaiKeyProvider>

@@ -9,7 +9,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ChatMessage | any>
 ) {
-  const { text } = req.body;
+  const { text, model = 'claude-instant-v1', temperature = 0.7, maxTokens = 400 } = req.body;
 
   console.log(text)
 
@@ -33,8 +33,9 @@ export default async function handler(
     const claudeResponse = await claudeClient.complete({
       prompt: text,
       stop_sequences: [HUMAN_PROMPT],
-      max_tokens_to_sample: 1000,
-      model: "claude-instant-v1",
+      max_tokens_to_sample: maxTokens,
+      temperature,
+      model,
     });
 
     return res.status(200).json({
