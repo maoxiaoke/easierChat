@@ -128,6 +128,7 @@ const Chat = () => {
       }
 
       setChats([ ..._chats, { ...gptResponse, conversationId: assistantRole?.id } ]);
+      setErr('');
     } catch (e) {
       if (e instanceof Error) {
         setErr(e.message);
