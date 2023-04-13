@@ -15,6 +15,8 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
 
   const modelName = value?.model ?? 'claude-instant-v1';
 
+  console.log('fsfds', modelName === 'claude-instant-v1')
+
   return (
     <Dialog.Root open={open}>
       <Dialog.Portal>
@@ -28,7 +30,7 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
                 <li
                   key={index}
                   onClick={() => setValue(val => ({ ...val as any, model: m.name }))}
-                  className={cls(m.name === modelName && 'border-blue-600', 'border-gray-300 cursor-pointer relative rounded-lg border bg-white dark:bg-zinc-800 p-4 shadow-sm focus:outline-none w-full text-sm')}  >
+                  className={cls('cursor-pointer relative rounded-lg border bg-white dark:bg-zinc-800 p-4 shadow-sm focus:outline-none w-full text-sm', m.name === modelName ? 'border-blue-600': 'border-gray-300')}  >
                   <div className="flex items-center">
                     <Avatar.Root className="AvatarRoot flex-shrink-0 w-5 h-5">
                       <Avatar.Image

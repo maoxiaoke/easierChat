@@ -1,18 +1,20 @@
 import Image from 'next/image';
-import Link from 'next/link';
-import Lottie from '../Lottie';
-import KeySetting from '../KeySetting';
-import tick from '../../lottie/tick.json';
-import info from '../../lottie/info.json'
-import { useOpenaiKey } from '../../contexts/openaiKey';
+// import Link from 'next/link';
+import { CheckIcon } from '@radix-ui/react-icons';
+
+// import Lottie from '../Lottie';
+// import KeySetting from '../KeySetting';
+// import tick from '../../lottie/tick.json';
+// import info from '../../lottie/info.json'
+// import { useOpenaiKey } from '../../contexts/openaiKey';
 
 const Intro = () => {
-  const { value: openaiKey } = useOpenaiKey();
+  // const { value: openaiKey } = useOpenaiKey();
 
   const descs = [
     '提供国内用户网路直连',
     '账号免登',
-    '自定义 Prompt 存储',
+    '沉浸式聊天体验',
     '海量社区 Prompt',
     '几乎免费',
     '更多功能开发中...'
@@ -35,9 +37,13 @@ const Intro = () => {
         <div className="my-4 grid sm:grid-cols-2 gap-y-2 gap-x-6">
           {
             descs.map((desc, idx) => (
-              <Lottie data={tick} key={idx} iconStyle={{ height: '20px', width: '20px' }} className="flex items-center">
-                <div className="ml-1">{desc}</div>
-              </Lottie>
+              <div key={idx} className="flex items-center justify-start">
+                <span className="flex w-6 h-6 bg-green-200 text-green-700 items-center justify-center rounded-full flex-shrink-0"><CheckIcon /></span>
+                <span className="inline-block ml-2">{desc}</span>
+              </div>
+              // <Lottie data={tick} key={idx} iconStyle={{ height: '20px', width: '20px' }} className="flex items-center">
+              //   <div className="ml-1">{desc}</div>
+              // </Lottie>
             ))
           }
         </div>
