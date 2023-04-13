@@ -4,11 +4,9 @@
 import { client as claudeClient, HUMAN_PROMPT } from '../../services/claude';
 
 import type { NextApiRequest, NextApiResponse } from 'next'
-
-import { NextRequest, NextResponse } from 'next/server';
-export const config = {
-  runtime: 'edge'
-};
+// export const config = {
+//   runtime: 'edge'
+// };
 
 export default async function handler(
   req: NextApiRequest,
