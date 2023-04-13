@@ -1,9 +1,14 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { ChatGPTAPI } from 'chatgpt';
+// import { ChatGPTAPI } from 'chatgpt';
 
 import { client as claudeClient, HUMAN_PROMPT } from '../../services/claude';
 
 import type { NextApiRequest, NextApiResponse } from 'next'
+
+import { NextRequest, NextResponse } from 'next/server';
+export const config = {
+  runtime: 'edge'
+};
 
 export default async function handler(
   req: NextApiRequest,
