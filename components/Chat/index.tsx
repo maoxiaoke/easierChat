@@ -150,7 +150,7 @@ const Chat = () => {
         </div>
       </div>
 
-      <div className="mt-14 mb-40 sm:mb-32">
+      <div className="mt-14 mb-40">
         <div className="max-w-2xl mx-auto">
           <Intro />
 
