@@ -213,14 +213,14 @@ const Chat = () => {
 
       {/* Footer */}
       <div className="fixed min-w-full bottom-0 py-4 bg-white z-50">
-        <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
+        {/* <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
           {
             isMobile && (
               <div className="pb-2">
                 <FunctionalZone />
               </div>
             )
-          }
+          } */}
 
 
           <div className="w-full flex px-4">
