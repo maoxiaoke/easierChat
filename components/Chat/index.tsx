@@ -238,7 +238,7 @@ const Chat = () => {
                 }}
                 id="chat-input-textbox"
                 placeholder="输入聊天内容..."
-                className={cls("relative block border-gray-300 focus:border-blue-600 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:py-1.5 sm:text-sm sm:leading-6 min-h-[36px] max-h-[500px] resize-none dark:bg-zinc-600 dark:text-white dark:ring-gray-500 dark:focus:ring-blue-500 py-1.5 px-3", !isMobile && 'pl-[54px]')}
+                className={cls("relative block border-gray-300 border-0 border-solid focus:border-blue-600 w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:py-1.5 sm:text-sm sm:leading-6 min-h-[36px] max-h-[500px] resize-none dark:bg-zinc-600 dark:text-white dark:ring-gray-500 dark:focus:ring-blue-500 py-1.5 px-3", !isMobile && 'pl-[54px]')}
                 style={{ height: '36px' }}
                 ></textarea>
 
