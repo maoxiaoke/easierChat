@@ -17,4 +17,6 @@ declare interface AssistantRole {
   prompt: string;
   title: string;
   desc: string;
+  keywords: string[];
 }
+

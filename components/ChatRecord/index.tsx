@@ -38,7 +38,10 @@ export const ChatRecord = ({ chat }: { chat: ChatMessage }) => {
   // const text  = useThrottle(chat.text, { wait: 500 })
   return (
     <div
-      className="flex items-start px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
+      className={cls(
+        "flex cursor-pointer items-start hover:bg-[#fcfcfc] dark:hover:bg-zinc-900 px-2 relative response-block scroll-mt-32 rounded-md pb-2 pt-2 pr-2 group min-h-[52px]",
+        chat.role === 'user' && 'hover:bg-gray-100'
+      )}
     >
       <AvatarMemo role={chat.role} />
       <div className={cls("markdown-body ml-3 text-sm focus:outline", chat.role === 'user' && 'bg-blue-500 text-white px-4 py-2 rounded-lg')}>

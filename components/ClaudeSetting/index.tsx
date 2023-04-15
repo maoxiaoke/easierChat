@@ -9,12 +9,29 @@ const models = [
   { name: 'claude-instant-v1', desc: '低延迟，减少等待时间' },
   { name: 'claude-v1.2', desc: 'v1 的升级版本，中文支持更好，但延迟比较高' },
   { name: 'claude-v1.3', desc: '内测版本，但可低调使用' },
-]
+];
+
+import * as Slider from '@radix-ui/react-slider';
+
+import type { SliderProps } from '@radix-ui/react-slider';
+
+const CustomSlider = (props: SliderProps) => (
+  <form>
+    <Slider.Root className="SliderRoot" { ...props } aria-label="Volume">
+      <Slider.Track className="SliderTrack">
+        <Slider.Range className="SliderRange bg-blue-600" />
+      </Slider.Track>
+      <Slider.Thumb className="bg-blue-600 SliderThumb hover:bg-blue-600" />
+    </Slider.Root>
+  </form>
+);
 
 const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean) => void }) => {
   const { value, setValue } = useModelSetting();
 
   const modelName = value?.model ?? 'claude-instant-v1';
+  const temperature = value?.temperature ?? 0.7;
+  const maxTokens = value?.maxTokens ?? 400;
 
   return (
     <Dialog.Root open={open}>
@@ -50,6 +67,32 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
             温度: <span className="text-black">{value?.temperature ?? '0.7'}</span>
           </Dialog.Description>
 
+          <CustomSlider
+            onValueChange={ value => {
+              const _value = value[0] / 100;
+
+              setValue(val => ({ ...val as any, temperature: _value }));
+            }}
+            value={[temperature * 100]}
+            max={100}
+            step={1}
+          />
+
+          <Dialog.Description className="DialogDescription text-xs">
+            生成长度: <span className="text-black">{maxTokens}</span>
+          </Dialog.Description>
+
+          <CustomSlider
+            onValueChange={ value => {
+              const _value = value[0] / 100;
+
+              setValue(val => ({ ...val as any, temperature: _value }));
+            }}
+            value={[maxTokens]}
+            max={2000}
+            min={200}
+            step={10}
+          />
 
           {/* <div style={{ display: 'flex', marginTop: 25, justifyContent: 'flex-end' }}>
             <Dialog.Close asChild>

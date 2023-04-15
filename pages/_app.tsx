@@ -1,9 +1,13 @@
-import '@/styles/globals.css';
 import '@/styles/modal.css';
 import '@/styles/avatar.css';
 import '@/styles/dailog.css';
 import '@/styles/context.css';
 import '@/styles/markdown.css';
+import '@/styles/slider.css';
+import '@/styles/alert.css';
+
+// As tailwind be the last
+import '@/styles/globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
 

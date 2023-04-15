@@ -4,11 +4,63 @@ import Link from 'next/link';
 import ClaudeSetting from '../ClaudeSetting';
 import { DotFilledIcon, CheckIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 
+import { builtinPrompts } from '../../data/prompts';
+import { useAssistantRole } from '../../contexts/assistant';
+import CommandBar from '../CommandBar';
+import { KBarProvider } from "kbar";
+
+import type { Action } from 'kbar';
+
+const about = [
+  {
+    id: 'about_me',
+    name: '关于我',
+    keywords: 'about, me, author',
+    section: 'About',
+    perform: () => {
+      window.open('https://twitter.com/xiaokedada', '__blank');
+    }
+  }
+];
+
 const ContextMenuChat = ({ children }: { children: React.ReactNode }) => {
   const [claudeSettingOpen, setClaueSettingOpen] = useState(false);
+  const { setValue } = useAssistantRole();
+
+  const promptsActions: Action[]  = builtinPrompts.map(prompt => ({
+    id: prompt.id,
+    name: prompt.title,
+    keywords: prompt.keywords.join(', '),
+    section: "Prompt",
+    subtitle: prompt.desc,
+    perform: (action) => {
+      setValue(action.id);
+    }
+  }));
+
+  const settingActions = [
+    {
+      id: 'claude_setting',
+      name: '模型设置',
+      keywords: 'setting',
+      section: 'Setting',
+      subtitle: '设置 CLAUDE 的参数',
+      perform: () => {
+        setClaueSettingOpen(true);
+      }
+    }
+  ];
+
+  const actions = [
+    ...promptsActions,
+    ...settingActions,
+    ...about,
+  ];
 
   return (
-    <ContextMenu.Root>
+    <KBarProvider actions={actions}>
+      <CommandBar />
+      <ContextMenu.Root>
       <ContextMenu.Trigger>
         <>
           { children }
@@ -114,6 +166,8 @@ const ContextMenuChat = ({ children }: { children: React.ReactNode }) => {
         </ContextMenu.Content>
       </ContextMenu.Portal>
     </ContextMenu.Root>
+    </KBarProvider>
+
   );
 };
 

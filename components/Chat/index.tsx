@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import ChatRecords, { ChatRecord, AvatarComponent } from '../ChatRecord';
+import ChatRecords, { AvatarComponent } from '../ChatRecord';
 import Intro from '../Intro';
 import { fetcher } from '../../helpers/fetcher';
 import { formatClaudePrompt } from '../../helpers/cluade.helpers';
@@ -11,12 +11,18 @@ import { useModelSetting } from '../../contexts/modelSetting';
 import { v4 as uuidv4 } from 'uuid';
 import Lottie from '../Lottie';
 import dot from '../../lottie/dot.json'
+import setting from '../../lottie/setting.json'
+import cls from 'classnames';
+import { useKBar } from "kbar";
+
+import { useIsSupportCapture } from '../../hooks/useIsSupportCapture';
 
 import { useLocalStorage } from 'react-use';
 
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
 const Chat = () => {
+  const { query } = useKBar();
   const { value } = useAssistantRole();
   const { value: modelSetting } = useModelSetting();
   const [err, setErr] = useState('');
@@ -24,6 +30,8 @@ const Chat = () => {
   const [text, setText] = useState<string>('');
   const [waiting, setWaiting] = useState<boolean>(false);
   const assistantRole = builtinPrompts.find((p) => p.id === value) ?? builtinPrompts[0];
+
+  const isMobile = useIsSupportCapture();
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
 
@@ -149,6 +157,13 @@ const Chat = () => {
           <p className="font-bold">新聊天</p>
           <p className="text-gray-400 text-xs">开启一个新聊天</p>
         </div>
+
+        { isMobile && (
+          <div className="absolute right-3" onClick={query.toggle}>
+            <Lottie data={setting} autoPlay loop iconStyle={{ width: '32px' }} />
+          </div>
+        ) }
+
       </div>
 
       <div className="mt-14 mb-40">
@@ -164,10 +179,10 @@ const Chat = () => {
                   className="flex items-center px-2 relative response-block scroll-mt-32 rounded-md hover:bg-gray-50 dark:hover:bg-zinc-900 pb-2 pt-2 pr-2 group min-h-[52px]"
                 >
                   <AvatarComponent role='assistant' />
-                <div className="ml-3 text-sm focus:outline flex items-center">
-                  <span className="inline-block mr-1">我假装在思考中</span> <Lottie data={dot} autoPlay loop iconStyle={{ width: '32px' }} />
-                  <div></div>
-                </div>
+                  <div className="ml-3 text-sm focus:outline flex items-center">
+                    <span className="inline-block mr-1">我假装在思考中</span> <Lottie data={dot} autoPlay loop iconStyle={{ width: '32px' }} />
+                    <div></div>
+                  </div>
               </div>
             )}
 
@@ -196,36 +211,58 @@ const Chat = () => {
         </div>
       </div>
 
-
       {/* Footer */}
       <div className="fixed min-w-full bottom-0 py-4 bg-white z-50">
         <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
-          <div className="pb-2">
-            <FunctionalZone />
-          </div>
+          {
+            isMobile && (
+              <div className="pb-2">
+                <FunctionalZone />
+              </div>
+            )
+          }
+
 
           <div className="w-full flex px-4">
-            <textarea
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={e => {
-                if (e.key === 'Enter') {
-                  e.preventDefault();
-                  sendChat();
+            <div className="w-full relative">
+              <textarea
+                value={text}
+                onChange={(e) => {
+                  setText(e.target.value)
+                }}
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    sendChat();
+                  }
+                }}
+                id="chat-input-textbox"
+                placeholder="输入聊天内容..."
+                className={cls("relative block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:py-1.5 sm:text-sm sm:leading-6 min-h-[36px] max-h-[500px] resize-none dark:bg-zinc-600 dark:text-white dark:ring-gray-500 dark:focus:ring-blue-500 py-1.5 px-3", !isMobile && 'pl-[54px]')}
+                style={{ height: '36px' }}
+                ></textarea>
+
+                {
+                  !isMobile && (
+                    <span className="absolute min-h-[30px] md:min-h-0 min-w-[36px] bottom-1/2 left-1.5 translate-y-1/2 flex items-center space-x-1 space-x-reverse text-xs py-0 rounded border border-gray-300 dark:border-gray-400 dark:text-white text-black px-2 hover:border-blue-600 hover:dark:border-blue-500">
+                      <kbd role="button" className="border-none text-center text-sm text-gray-500" onClick={query.toggle}>
+                        <span className="text-base">⌘</span>
+                        <span className="inline-box ml-1">K</span>
+                      </kbd>
+                    </span>
+                  )
                 }
-              }}
-              id="chat-input-textbox"
-              placeholder="输入聊天内容..."
-              className="block py-1.5 px-3 w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:py-1.5 sm:text-sm sm:leading-6 min-h-[36px] max-h-[500px] resize-none dark:bg-zinc-600 dark:text-white dark:ring-gray-500 dark:focus:ring-blue-500"
-              style={{ height: '36px' }}
-              ></textarea>
+
+            </div>
 
             <button
               type="button"
               className="inline-flex ml-2 items-center px-4 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-default transition-colors whitespace-nowrap space-x-1"
               onClick={sendChat}
               disabled={!!waiting}
-            > → 发送</button>
+            >
+              <span>→ 发送</span>
+            </button>
           </div>
 
           <p className="mt-2 text-gray-400 text-xs text-center px-4">

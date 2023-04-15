@@ -2,13 +2,14 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import LeftMenu from '../components/LeftMenu';
 import Settings from '../components/Settings';
-// import ContextMenu from '../components/ContextMenu';
+import Alert from '../components/Alert';
 import { AssistantRoleProvider } from '../contexts/assistant';
 import { OpenaiKeyProvider } from '../contexts/openaiKey';
 import { ModelSettingProvider } from '../contexts/modelSetting';
 
 const Chat = dynamic(() => import('../components/Chat'), { ssr: false });
 const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: false });
+
 // import Image from 'next/image'
 // import { Inter } from 'next/font/google'
 // import styles from '@/styles/Home.module.css'
@@ -25,6 +26,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex">
+        <Alert />
         <OpenaiKeyProvider>
           {/* Left Menu */}
           {/* <div style={{ width: '320px' }} className="max-h-screen bg-gray-800 flex flex-col justify-between">
