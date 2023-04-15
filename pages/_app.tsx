@@ -3,6 +3,7 @@ import '@/styles/modal.css';
 import '@/styles/avatar.css';
 import '@/styles/dailog.css';
 import '@/styles/context.css';
+import '@/styles/markdown.css';
 
 import { Analytics } from '@vercel/analytics/react';
 

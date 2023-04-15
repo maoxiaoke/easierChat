@@ -7,15 +7,14 @@ import { useModelSetting } from '../../contexts/modelSetting';
 
 const models = [
   { name: 'claude-instant-v1', desc: '低延迟，减少等待时间' },
-  { name: 'claude-v1.2', desc: 'v1 的升级版本，中文支持更好，但延迟比较高' }
+  { name: 'claude-v1.2', desc: 'v1 的升级版本，中文支持更好，但延迟比较高' },
+  { name: 'claude-v1.3', desc: '内测版本，但可低调使用' },
 ]
 
 const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean) => void }) => {
   const { value, setValue } = useModelSetting();
 
   const modelName = value?.model ?? 'claude-instant-v1';
-
-  console.log('fsfds', modelName === 'claude-instant-v1')
 
   return (
     <Dialog.Root open={open}>
