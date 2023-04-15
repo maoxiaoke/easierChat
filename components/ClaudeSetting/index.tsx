@@ -84,9 +84,9 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
 
           <CustomSlider
             onValueChange={ value => {
-              const _value = value[0] / 100;
+              const _value = value[0];
 
-              setValue(val => ({ ...val as any, temperature: _value }));
+              setValue(val => ({ ...val as any, maxTokens: _value }));
             }}
             value={[maxTokens]}
             max={2000}
