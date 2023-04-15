@@ -17,7 +17,7 @@ import type { SliderProps } from '@radix-ui/react-slider';
 
 const CustomSlider = (props: SliderProps) => (
   <form>
-    <Slider.Root className="SliderRoot" { ...props } aria-label="Volume">
+    <Slider.Root className="SliderRoot" { ...props }>
       <Slider.Track className="SliderTrack">
         <Slider.Range className="SliderRange bg-blue-600" />
       </Slider.Track>
@@ -29,6 +29,8 @@ const CustomSlider = (props: SliderProps) => (
 const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean) => void }) => {
   const { value, setValue } = useModelSetting();
 
+  console.log('value', value)
+
   const modelName = value?.model ?? 'claude-instant-v1';
   const temperature = value?.temperature ?? 0.7;
   const maxTokens = value?.maxTokens ?? 400;
@@ -36,7 +38,7 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
   return (
     <Dialog.Root open={open}>
       <Dialog.Portal>
-        <Dialog.Content className="DialogContent w-full sm:max-w-[90vw] sm:w-fit">
+        <Dialog.Content className="DialogContent w-full sm:max-w-[90vw] sm:w-fit min-h-[60vh] overflow-y-auto">
           <Dialog.Title className="DialogTitle">Claude 配置</Dialog.Title>
           <Dialog.Description className="DialogDescription text-xs">模型</Dialog.Description>
 
@@ -45,7 +47,7 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
               models.map((m, index) => (
                 <li
                   key={index}
-                  onClick={() => setValue(val => ({ ...val as any, model: m.name }))}
+                  onClick={() => setValue({ ...value as any, model: m.name })}
                   className={cls('cursor-pointer relative rounded-lg border bg-white dark:bg-zinc-800 p-4 shadow-sm focus:outline-none w-full text-sm', m.name === modelName ? 'border-blue-600': 'border-gray-300')}  >
                   <div className="flex items-center">
                     <Avatar.Root className="AvatarRoot flex-shrink-0 w-5 h-5">
@@ -68,10 +70,14 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
           </Dialog.Description>
 
           <CustomSlider
-            onValueChange={ value => {
-              const _value = value[0] / 100;
+            key="temperature"
+            onValueChange={val => {
+              const _value = val[0] / 100;
 
-              setValue(val => ({ ...val as any, temperature: _value }));
+              setValue({
+                ...value as any,
+                temperature: _value
+              });
             }}
             value={[temperature * 100]}
             max={100}
@@ -83,10 +89,11 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
           </Dialog.Description>
 
           <CustomSlider
-            onValueChange={ value => {
-              const _value = value[0];
+            key="maxTokens"
+            onValueChange={val => {
+              const _value = val[0];
 
-              setValue(val => ({ ...val as any, maxTokens: _value }));
+              setValue({ ...value as any, maxTokens: _value });
             }}
             value={[maxTokens]}
             max={2000}
