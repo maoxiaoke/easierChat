@@ -109,6 +109,7 @@ const groupNameStyle = {
   opacity: 0.5,
 };
 
+// eslint-disable-next-line react/display-name
 const ResultItem = React.forwardRef(
   (
     {
@@ -233,7 +234,7 @@ function RenderResults() {
   );
 }
 
-function CommandBar ()  {
+const CommandBar = () => {
   return (
     <KBarPortal>
       <KBarPositioner>
