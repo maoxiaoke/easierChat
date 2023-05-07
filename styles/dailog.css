@@ -1,10 +1,15 @@
-@import '@radix-ui/colors/blackA.css';
 @import '@radix-ui/colors/green.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/violet.css';
+@import '@radix-ui/colors/slate.css';
+
+@import '@radix-ui/colors/greenDark.css';
+@import '@radix-ui/colors/mauveDark.css';
+@import '@radix-ui/colors/violetDark.css';
+@import '@radix-ui/colors/slateDark.css';
 
 .DialogOverlay {
-  background-color: var(--blackA9);
+  background-color: var(--slate9);
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -12,7 +17,7 @@
 }
 
 .DialogContent {
-  background-color: white;
+  background-color: var(--slate1);
   border-radius: 6px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
   position: fixed;
@@ -54,15 +59,15 @@
   height: 35px;
 }
 .Button.violet {
-  background-color: white;
+  background-color: var(--slate1);
   color: var(--violet11);
-  box-shadow: 0 2px 10px var(--blackA7);
+  box-shadow: 0 2px 10px var(--slate7);
 }
 .Button.violet:hover {
   background-color: var(--mauve3);
 }
 .Button.violet:focus {
-  box-shadow: 0 0 0 2px black;
+  box-shadow: 0 0 0 2px var(--slate12);
 }
 .Button.green {
   background-color: var(--green4);

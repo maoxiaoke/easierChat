@@ -18,6 +18,7 @@ import { useKBar } from "kbar";
 import { useIsSupportCapture } from '../../hooks/useIsSupportCapture';
 
 import { useLocalStorage } from 'react-use';
+import ThemeChanger from '../ThemeChanger';
 
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
@@ -146,18 +147,17 @@ const Chat = () => {
       setWaiting(false);
     }
   }
-
   return (
     <div className="h-screen overflow-y-auto" ref={chatWrapperRef}>
       {/* Header */}
       <div
-        className="top-0 fixed min-w-full bg-white shadow-lg flex justify-center items-center p-2 z-50"
+      className={`top-0 fixed min-w-full bg-white dark:bg-neutral-900 shadow-lg flex justify-center items-center p-2 z-50 select-none`}
       >
         <div className="text-center">
           <p className="font-bold">新聊天</p>
-          <p className="text-gray-400 text-xs">开启一个新聊天</p>
+          <p className="text-gray-400 text-xs dark:text-gray-400">开启一个新聊天</p>
         </div>
-
+        <div className='fixed top-2 right-2'><ThemeChanger /></div>
         { isMobile && (
           <div className="absolute right-3" onClick={query.toggle}>
             <Lottie data={setting} autoPlay loop iconStyle={{ width: '32px' }} />
@@ -212,7 +212,7 @@ const Chat = () => {
       </div>
 
       {/* Footer */}
-      <div className="fixed min-w-full bottom-0 py-4 bg-white z-50">
+      <div className="fixed min-w-full bottom-0 py-4 bg-white z-50 dark:bg-neutral-900">
         <div className="flex flex-col mx-auto max-w-2xl justify-center items-center">
           {/* {
             isMobile && (
@@ -266,10 +266,10 @@ const Chat = () => {
             </button>
           </div>
 
-          <p className="mt-2 text-gray-400 text-xs text-center px-4">
-            <span className="inline-block mr-2 text-gray-500">easierChat.com - 一个更方便、易用的 chatBot 客户端</span>
+          <div className="mt-2 text-gray-400 text-xs text-center px-4 flex">
+            <span className="inline-block mx-2 text-gray-500">easierChat.com - 一个更方便、易用的 chatBot 客户端</span>
             <Link href='/'>FAQs</Link> | <Link href="https://twitter.com/xiaokedada">@那吒</Link> | <Link href="mailto: maoxiaoke@outlook.com">提交反馈</Link> | <Link href="https://nazha-image-store.oss-cn-shanghai.aliyuncs.com/others/easierChat.dmg">macOS 客户端</Link>
-          </p>
+          </div>
         </div>
       </div>
     </div>

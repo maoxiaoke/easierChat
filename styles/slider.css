@@ -1,5 +1,3 @@
-@import '@radix-ui/colors/blackA.css';
-@import '@radix-ui/colors/violet.css';
 
 .SliderRoot {
   position: relative;
@@ -12,7 +10,7 @@
 }
 
 .SliderTrack {
-  background-color: var(--blackA10);
+  background-color: var(--slate10);
   position: relative;
   flex-grow: 1;
   border-radius: 9999px;
@@ -21,7 +19,7 @@
 
 .SliderRange {
   position: absolute;
-  background-color: white;
+  background-color: var(--slate1);
   border-radius: 9999px;
   height: 100%;
 }
@@ -30,8 +28,8 @@
   display: block;
   width: 20px;
   height: 20px;
-  background-color: white;
-  box-shadow: 0 2px 10px var(--blackA7);
+  background-color: var(--slate1);
+  box-shadow: 0 2px 10px var(--slate7);
   border-radius: 10px;
 }
 .SliderThumb:hover {
@@ -39,5 +37,5 @@
 }
 .SliderThumb:focus {
   outline: none;
-  box-shadow: 0 0 0 5px var(--blackA8);
+  box-shadow: 0 0 0 5px var(--slate8);
 }

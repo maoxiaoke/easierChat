@@ -1,19 +1,23 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 // import { ChatGPTAPI } from 'chatgpt';
 
-import claudeClient, { HUMAN_PROMPT } from '../../services/claude';
+import claudeClient, { HUMAN_PROMPT } from "../../services/claude";
 
-import type { NextRequest } from 'next/server'
+import type { NextRequest } from "next/server";
 
 export const config = {
-  runtime: 'edge'
+  runtime: "edge",
 };
 
 export default async function handler(req: NextRequest) {
-  const { text, model = 'claude-instant-v1', temperature = 0.7, maxTokens = 400 }  = await req.json();
+  const {
+    text,
+    model = "claude-instant-v1",
+    temperature = 0.7,
+    maxTokens = 400,
+  } = await req.json();
 
-  console.log(text)
-
+  console.log(text);
 
   // const officialApi = new ChatGPTAPI({
   //   apiKey: process.env.OPENAI_API_KEY ?? '',
@@ -39,22 +43,28 @@ export default async function handler(req: NextRequest) {
       model,
     });
 
-    return new Response(JSON.stringify({
-      date: Date.now(),
-      role: 'assistant',
-      text: claudeResponse.completion,
-    }), {
-      status: 200,
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
+    return new Response(
+      JSON.stringify({
+        date: Date.now(),
+        role: "assistant",
+        text: claudeResponse.completion,
+      }),
+      {
+        status: 200,
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    );
   } catch (e: any) {
     console.error(e);
-    return new Response(JSON.stringify({
-      error: e.message,
-    }), {
-      status: 500,
-    })
+    return new Response(
+      JSON.stringify({
+        error: e.message,
+      }),
+      {
+        status: 500,
+      }
+    );
   }
 }

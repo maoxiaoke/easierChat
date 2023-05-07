@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
-// import { useThrottle } from 'ahooks';
+
 import cls from 'classnames';
 import ReactMarkdown from 'react-markdown'
 import rehypeHighlight from 'rehype-highlight'

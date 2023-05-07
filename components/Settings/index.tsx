@@ -35,6 +35,8 @@ const Settings = () => {
       </div>
 
       <div className="border-t border-gray-500 py-1"></div>
+
+
       <div className="text-xs text-gray-400 font-semibold text-center">
         <a href="">easierChat.com </a>
         © 2023
