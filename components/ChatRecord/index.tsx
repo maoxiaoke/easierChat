@@ -24,10 +24,10 @@ export const AvatarComponent = ({ role }: { role: ChatMessage['role'] }) => (
 
 const AvatarMemo = memo(AvatarComponent);
 
-const ChatRecords = ({ chats = [] } : ChatRecordProps) => {
+const ChatRecords = ({ chats = [] }: ChatRecordProps) => {
   return (
     <div>
-      { chats.map((chat) => (
+      {chats.map((chat) => (
         <ChatRecord key={chat.id ?? chat.date} chat={chat} />
       ))}
     </div>
@@ -46,7 +46,7 @@ export const ChatRecord = ({ chat }: { chat: ChatMessage }) => {
       <AvatarMemo role={chat.role} />
       <div className={cls("markdown-body ml-3 text-sm focus:outline", chat.role === 'user' && 'bg-blue-500 text-white px-4 py-2 rounded-lg')}>
         <ReactMarkdown rehypePlugins={[[rehypeHighlight, { detect: true }]]}>
-          { chat.text }
+          {chat.text}
         </ReactMarkdown>
       </div>
     </div>

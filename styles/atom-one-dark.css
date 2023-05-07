@@ -1,0 +1,55 @@
+/* atom one dark https://highlightjs.org/static/demo/styles/atom-one-dark.css */
+.dark-theme pre  {
+  color: #abb2bf;
+  background: #282c34
+}
+
+.dark-theme .hljs {
+  color: #abb2bf;
+  background: #282c34
+}
+
+.dark-theme .hljs-comment, .dark-theme .hljs-quote {
+  color: #5c6370;
+  font-style: italic
+}
+
+.dark-theme .hljs-doctag, .dark-theme .hljs-formula, .dark-theme .hljs-keyword {
+  color: #c678dd
+}
+
+.dark-theme .hljs-deletion, .dark-theme .hljs-name, .dark-theme .hljs-section, .dark-theme .hljs-selector-tag, .dark-theme .hljs-subst {
+  color: #e06c75
+}
+
+.dark-theme .hljs-literal {
+  color: #56b6c2
+}
+
+.dark-theme .hljs-addition, .dark-theme .hljs-attribute, .dark-theme .hljs-meta .hljs-string, .dark-theme .hljs-regexp, .dark-theme .hljs-string {
+  color: #98c379
+}
+
+.dark-theme .hljs-attr, .dark-theme .hljs-number, .dark-theme .hljs-selector-attr, .dark-theme .hljs-selector-class, .dark-theme .hljs-selector-pseudo, .dark-theme .hljs-template-variable, .dark-theme .hljs-type, .dark-theme .hljs-variable {
+  color: #d19a66
+}
+
+.dark-theme .hljs-bullet, .dark-theme .hljs-link, .dark-theme .hljs-meta, .dark-theme .hljs-selector-id, .dark-theme .hljs-symbol, .dark-theme .hljs-title {
+  color: #61aeee
+}
+
+.dark-theme .hljs-built_in, .dark-theme .hljs-class .hljs-title, .dark-theme .hljs-title.class_ {
+  color: #e6c07b
+}
+
+.dark-theme .hljs-emphasis {
+  font-style: italic
+}
+
+.dark-theme .hljs-strong {
+  font-weight: 700
+}
+
+.dark-theme .hljs-link {
+  text-decoration: underline
+}
