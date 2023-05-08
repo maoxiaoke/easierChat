@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import Lottie from '../Lottie';
 import dot from '../../lottie/dot.json'
 import setting from '../../lottie/setting.json'
+import settingDark from '../../lottie/setting-dark.json'
 import cls from 'classnames';
 import { useKBar } from "kbar";
 
@@ -19,6 +20,7 @@ import { useIsSupportCapture } from '../../hooks/useIsSupportCapture';
 
 import { useLocalStorage } from 'react-use';
 import ThemeChanger from '../ThemeChanger';
+import { useTheme } from 'next-themes';
 
 const FunctionalZone = dynamic(() => import('../FunctionalZone'), { ssr: false });
 
@@ -35,6 +37,7 @@ const Chat = () => {
   const isMobile = useIsSupportCapture();
 
   const [chats, setChats] = useLocalStorage<ChatMessage[]>('ec-records');
+  const {theme} = useTheme()
 
   useEffect(() => {
     if (chats?.length && chatWrapperRef.current) {
@@ -151,19 +154,20 @@ const Chat = () => {
     <div className="h-screen overflow-y-auto" ref={chatWrapperRef}>
       {/* Header */}
       <div
-      className={`top-0 fixed min-w-full bg-white dark:bg-neutral-900 shadow-lg flex justify-center items-center p-2 z-50 select-none`}
+      className="top-0 fixed min-w-full bg-white dark:bg-neutral-900 shadow-lg flex justify-center items-center p-2 z-50 select-none"
       >
         <div className="text-center">
           <p className="font-bold">新聊天</p>
           <p className="text-gray-400 text-xs dark:text-gray-400">开启一个新聊天</p>
         </div>
-        <div className='fixed top-2 right-2'><ThemeChanger /></div>
-        { isMobile && (
+        <div className={cls('fixed top-2', isMobile ? 'left-3': 'right-3')}><ThemeChanger /></div>
+        { 
+         isMobile &&
           <div className="absolute right-3" onClick={query.toggle}>
-            <Lottie data={setting} autoPlay loop iconStyle={{ width: '32px' }} />
+            {/* key for refresh Lottie cache */}
+            <Lottie key={theme} data={theme==='dark'? settingDark : setting} autoPlay loop iconStyle={{ width: '32px' }} />
           </div>
-        ) }
-
+         }
       </div>
 
       <div className="mt-20 mb-40">
