@@ -1,11 +1,16 @@
-@import '@radix-ui/colors/blackA.css';
+@import '@radix-ui/colors/slate.css';
 @import '@radix-ui/colors/mauve.css';
 @import '@radix-ui/colors/violet.css';
+
+@import '@radix-ui/colors/slateDark.css';
+@import '@radix-ui/colors/mauveDark.css';
+@import '@radix-ui/colors/violetDark.css';
+
 
 .ContextMenuContent,
 .ContextMenuSubContent {
   min-width: 220px;
-  background-color: white;
+  background-color: var(--slate1);
   border-radius: 6px;
   overflow: hidden;
   padding: 5px;
@@ -20,7 +25,7 @@
   font-size: 13px;
   line-height: 1;
   color: var(--violet11);
-  border-radius: 3px;
+  border-radius: 3px; 
   display: flex;
   align-items: center;
   height: 25px;
@@ -77,7 +82,7 @@
   color: var(--mauve11);
 }
 [data-highlighted] > .RightSlot {
-  color: white;
+  color: var(--slate1);
 }
 [data-disabled] .RightSlot {
   color: var(--mauve8);

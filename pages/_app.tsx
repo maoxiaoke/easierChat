@@ -10,14 +10,14 @@ import '@/styles/alert.css';
 import '@/styles/globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
-
+import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <ThemeProvider enableSystem={false} attribute='class' value={{dark: 'dark-theme'}}>
       <Component {...pageProps} />
       <Analytics />
-    </>
+    </ThemeProvider>
   )
 }

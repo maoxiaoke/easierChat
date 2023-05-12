@@ -66,7 +66,7 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
           </ul>
 
           <Dialog.Description className="DialogDescription text-xs">
-            温度: <span className="text-black">{value?.temperature ?? '0.7'}</span>
+            温度: <span className="text-black dark:text-slate-300">{value?.temperature ?? '0.7'}</span>
           </Dialog.Description>
 
           <CustomSlider
@@ -85,7 +85,7 @@ const CluadeSetting = ({ open, setOpen }: { open: boolean; setOpen: (o : boolean
           />
 
           <Dialog.Description className="DialogDescription text-xs">
-            生成长度: <span className="text-black">{maxTokens}</span>
+            生成长度: <span className="text-black dark:text-slate-300">{maxTokens}</span>
           </Dialog.Description>
 
           <CustomSlider

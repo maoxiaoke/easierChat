@@ -1,10 +1,4 @@
 /* modal */
-@import '@radix-ui/colors/blackA.css';
-@import '@radix-ui/colors/indigo.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/purple.css';
-@import '@radix-ui/colors/violet.css';
-
 .NavigationMenuRoot {
   position: relative;
   display: flex;
@@ -15,11 +9,11 @@
 .NavigationMenuList {
   display: flex;
   justify-content: center;
-  background-color: white;
+  background-color: var(--slate1);
   padding: 4px;
   border-radius: 6px;
   list-style: none;
-  box-shadow: 0 2px 10px var(--blackA7);
+  box-shadow: 0 2px 10px var(--slate7);
   margin: 0;
 }
 
@@ -105,7 +99,7 @@
   transform-origin: top center;
   margin-top: 10px;
   width: 100%;
-  background-color: white;
+  background-color: var(--slate1);
   border-radius: 6px;
   overflow: hidden;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -191,7 +185,7 @@
 }
 
 .CalloutHeading {
-  color: white;
+  color: var(--slate1);
   font-size: 18px;
   font-weight: 500;
   line-height: 1.2;
@@ -228,7 +222,7 @@
 .Arrow {
   position: relative;
   top: 70%;
-  background-color: white;
+  background-color: var(--slate1);
   width: 10px;
   height: 10px;
   transform: rotate(45deg);

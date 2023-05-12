@@ -1,5 +1,4 @@
-@import '@radix-ui/colors/blackA.css';
-@import '@radix-ui/colors/violet.css';
+
 
 .AvatarRoot {
   display: inline-flex;
@@ -9,7 +8,7 @@
   overflow: hidden;
   user-select: none;
   border-radius: 100%;
-  background-color: var(--blackA3);
+  background-color: var(--slate3);
 }
 
 .AvatarImage {
@@ -25,7 +24,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
+  background-color: var(--slate1);
   color: var(--violet11);
   font-size: 15px;
   line-height: 1;

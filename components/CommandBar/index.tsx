@@ -88,15 +88,11 @@ const searchStyle = {
   boxSizing: "border-box" as React.CSSProperties["boxSizing"],
   outline: "none",
   border: "none",
-  background: "rgb(252 252 252)",
-  color: "rgb(28 28 29)",
 };
 
 const animatorStyle = {
   maxWidth: "600px",
   width: "100%",
-  background: "rgb(252 252 252)",
-  color: "rgb(28 28 29)",
   borderRadius: "8px",
   overflow: "hidden",
   boxShadow: "0px 6px 20px rgb(0 0 0 / 20%)",
@@ -238,7 +234,7 @@ const CommandBar = () => {
   return (
     <KBarPortal>
       <KBarPositioner>
-        <KBarAnimator style={animatorStyle}>
+        <KBarAnimator style={animatorStyle} className='bg-white dark:bg-neutral-900	'>
           <KBarSearch style={searchStyle} />
           <RenderResults />
         </KBarAnimator>

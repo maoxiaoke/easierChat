@@ -1,8 +1,4 @@
-@import '@radix-ui/colors/blackA.css';
-@import '@radix-ui/colors/green.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/slate.css';
-@import '@radix-ui/colors/violet.css';
+
 
 .ToastViewport {
   --viewport-padding: 25px;
@@ -22,9 +18,11 @@
 }
 
 .ToastRoot {
-  background-color: white;
+  background-color: var(--slate2);
   border-radius: 6px;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow: 
+  var(--slate6) 0px 10px 38px -10px, 
+  var(--slate10)  0px 10px 20px -15px;
   padding: 15px;
   display: grid;
   grid-template-areas: 'title action' 'description action';
@@ -116,9 +114,9 @@
   height: 35px;
 }
 .Button.violet {
-  background-color: white;
+  background-color: var(--slate2);
   color: var(--violet11);
-  box-shadow: 0 2px 10px var(--blackA7);
+  box-shadow: 0 2px 10px var(--slate7);
 }
 .Button.violet:hover {
   background-color: var(--mauve3);
