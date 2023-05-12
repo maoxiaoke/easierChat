@@ -6,7 +6,6 @@ import Alert from '../components/Alert';
 import { AssistantRoleProvider } from '../contexts/assistant';
 import { OpenaiKeyProvider } from '../contexts/openaiKey';
 import { ModelSettingProvider } from '../contexts/modelSetting';
-import { useIsSupportCapture } from '../hooks/useIsSupportCapture';
 
 const Chat = dynamic(() => import('../components/Chat'), { ssr: false });
 const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: false });
@@ -17,8 +16,6 @@ const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: fa
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-  const isMobile = useIsSupportCapture();
-
   return (
     <>
       <Head>
@@ -40,12 +37,9 @@ export default function Home() {
           <div className="flex-1">
             <AssistantRoleProvider>
               <ModelSettingProvider>
-                {
-                  isMobile ? <Chat /> : (
-                  <ContextMenu >
-                    <Chat />
-                  </ContextMenu>)
-                }
+                <ContextMenu >
+                  <Chat />
+                </ContextMenu>
               </ModelSettingProvider>
             </AssistantRoleProvider>
           </div>
