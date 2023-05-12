@@ -3,11 +3,11 @@ import * as Toast from '@radix-ui/react-toast';
 import { Cross2Icon } from '@radix-ui/react-icons';
 
 const Alert = () => {
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
 
   return (
     <Toast.Provider swipeDirection="right">
-      <Toast.Root className="ToastRoot" open={open}>
+      <Toast.Root className="ToastRoot" duration={3000}>
         <Toast.Title className="ToastTitle">小惊喜</Toast.Title>
         <Toast.Description asChild>
           <div className="ToastDescription">
@@ -15,7 +15,7 @@ const Alert = () => {
           </div>
         </Toast.Description>
         <Toast.Action className="ToastAction" asChild altText="Goto schedule to undo">
-          <button className="IconButtonWithoutPosition" aria-label="Close" onClick={() => setOpen(false)}>
+          <button className="IconButtonWithoutPosition" aria-label="Close">
             <Cross2Icon />
           </button>
         </Toast.Action>
