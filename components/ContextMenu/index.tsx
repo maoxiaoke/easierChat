@@ -2,7 +2,6 @@ import { useState } from 'react';
 import * as ContextMenu from '@radix-ui/react-context-menu';
 import Link from 'next/link';
 import ClaudeSetting from '../ClaudeSetting';
-import { DotFilledIcon, CheckIcon, ChevronRightIcon } from '@radix-ui/react-icons';
 
 import { builtinPrompts } from '../../data/prompts';
 import { useAssistantRole } from '../../contexts/assistant';
