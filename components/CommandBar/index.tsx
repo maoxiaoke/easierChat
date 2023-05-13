@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { useIsSupportCapture } from "../../hooks/useIsSupportCapture";
 
 import {
   KBarPortal,
@@ -137,9 +138,7 @@ const ResultItem = React.forwardRef(
         style={{
           padding: "12px 16px",
           background: active ? "rgba(0 0 0 / 0.05)" : "transparent",
-          borderLeft: `2px solid ${
-            active ? "rgb(28 28 29)" : "transparent"
-          }`,
+          borderLeft: `2px solid ${active ? "rgb(28 28 29)" : "transparent"}`,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -212,8 +211,11 @@ const ResultItem = React.forwardRef(
 function RenderResults() {
   const { results, rootActionId } = useMatches();
 
+  const isMobile = useIsSupportCapture();
+
   return (
     <KBarResults
+      maxHeight={isMobile ? 300 : undefined}
       items={results}
       onRender={({ item, active }) =>
         typeof item === "string" ? (
@@ -234,13 +236,16 @@ const CommandBar = () => {
   return (
     <KBarPortal>
       <KBarPositioner>
-        <KBarAnimator style={animatorStyle} className='bg-white dark:bg-neutral-900	'>
+        <KBarAnimator
+          style={animatorStyle}
+          className="bg-white dark:bg-neutral-900"
+        >
           <KBarSearch style={searchStyle} />
           <RenderResults />
         </KBarAnimator>
       </KBarPositioner>
     </KBarPortal>
   );
-}
+};
 
 export default CommandBar;
