@@ -3,13 +3,12 @@
   "short_name": "chat",
   "icons": [
     {
-      "src": "/easierchat-512.png",
+      "src": "/easierchat-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/easierchat-512.png",
+      "src": "/easierchat-384.png",
       "sizes": "384x384",
       "type": "image/png"
     },
