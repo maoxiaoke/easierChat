@@ -83,11 +83,7 @@ const ContextMenuChat = ({ children }: { children: React.ReactNode }) => {
           </ContextMenu.Trigger>
           <ContextMenu.Portal>
             {/* @ts-ignore */}
-            <ContextMenu.Content
-              className="ContextMenuContent"
-              sideOffset={5}
-              align="end"
-            >
+            <ContextMenu.Content className="ContextMenuContent" align="end">
               <ContextMenu.Item
                 className="ContextMenuItem cursor-pointer"
                 onClick={() => {
