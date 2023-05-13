@@ -10,17 +10,13 @@ export const formatClaudePrompt = (
   }
 
   if (file) {
-    const idx = _chats.findIndex((chat) => chat.role === "user");
+    const _context = {
+      text: `Here is the file Content: '${file}'`,
+      role: "user" as any,
+      date: Date.now(),
+    };
 
-    if (idx > -1) {
-      _chats = [
-        ..._chats.slice(0, idx),
-        {
-          ..._chats[idx],
-          text: `Here is an essay: '${file}'\n\n${_chats[idx].text}`,
-        },
-      ];
-    }
+    _chats = [_context, ..._chats];
   }
 
   return _chats
