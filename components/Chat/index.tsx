@@ -300,7 +300,7 @@ const Chat = () => {
                   }
                 }}
                 id="chat-input-textbox"
-                placeholder="输入聊天内容..."
+                placeholder="/ 上传文件, enter 发送, shift + enter 换行, 输入聊天内容... "
                 className={cls(
                   "relative block border-gray-300 border border-solid focus:border-blue-600 w-full rounded-md text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:py-1.5 sm:text-sm sm:leading-6 min-h-[36px] max-h-[196px] resize-none dark:bg-zinc-600 dark:text-white dark:ring-gray-500 dark:focus:ring-blue-500 py-1.5 px-3",
                   !isMobile && "pl-[54px]"
