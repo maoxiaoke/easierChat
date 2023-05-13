@@ -17,7 +17,7 @@ export default async function handler(req: NextRequest) {
     maxTokens = 400,
   } = await req.json();
 
-  console.log(text);
+  console.log(model, temperature, maxTokens);
 
   // const officialApi = new ChatGPTAPI({
   //   apiKey: process.env.OPENAI_API_KEY ?? '',
