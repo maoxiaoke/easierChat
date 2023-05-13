@@ -55,6 +55,10 @@ const Chat = () => {
       return;
     }
 
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "40px";
+    }
+
     const _chats: ChatMessage[] = [
       ...(chats ?? []),
       {
