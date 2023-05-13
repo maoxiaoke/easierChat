@@ -51,6 +51,27 @@ const ContextMenuChat = ({ children }: { children: React.ReactNode }) => {
         setClaueSettingOpen(true);
       },
     },
+    {
+      id: "refresh",
+      name: "刷新",
+      keywords: "refresh",
+      section: "Setting",
+      subtitle: "刷新整个页面",
+      perform: () => {
+        location.reload();
+      },
+    },
+    {
+      id: "delete_all_history",
+      name: "删除历史记录",
+      keywords: "delete, history",
+      section: "Setting",
+      subtitle: "删除所有历史记录，该操作不可逆",
+      perform: () => {
+        localStorage.removeItem("ec-records");
+        location.reload();
+      },
+    },
   ];
 
   const functionActions = [
@@ -69,7 +90,13 @@ const ContextMenuChat = ({ children }: { children: React.ReactNode }) => {
     <KBarProvider actions={actions}>
       <CommandBar />
       {isMobile ? (
-        <div>{children}</div>
+        <div>
+          {children}
+          <ClaudeSetting
+            open={claudeSettingOpen}
+            setOpen={(o) => setClaueSettingOpen(false)}
+          />
+        </div>
       ) : (
         <ContextMenu.Root>
           <ContextMenu.Trigger>
