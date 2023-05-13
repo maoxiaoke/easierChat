@@ -15,12 +15,15 @@ import setting from "../../lottie/setting.json";
 import settingDark from "../../lottie/setting-dark.json";
 import cls from "classnames";
 import { useKBar } from "kbar";
+import FastOperations from "../FastOperations";
 
 import { useIsSupportCapture } from "../../hooks/useIsSupportCapture";
 
 import { useLocalStorage } from "react-use";
 import ThemeChanger from "../ThemeChanger";
 import { useTheme } from "next-themes";
+
+import type { FileInfo } from "../FastOperations";
 
 const FunctionalZone = dynamic(() => import("../FunctionalZone"), {
   ssr: false,
@@ -35,6 +38,9 @@ const Chat = () => {
   const [text, setText] = useState<string>("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [waiting, setWaiting] = useState<boolean>(false);
+  const [fastZoneVisible, setFastZoneVisible] = useState<boolean>(false);
+  const [file, setFile] = useState<FileInfo | null>(null);
+
   const assistantRole =
     builtinPrompts.find((p) => p.id === value) ?? builtinPrompts[0];
 
@@ -72,7 +78,11 @@ const Chat = () => {
 
     setChats(_chats);
 
-    const claudePrompt = formatClaudePrompt(_chats, assistantRole);
+    const claudePrompt = formatClaudePrompt(
+      _chats,
+      assistantRole,
+      file?.content
+    );
 
     setText("");
     setWaiting(true);
@@ -88,7 +98,7 @@ const Chat = () => {
         body: JSON.stringify({
           text: claudePrompt,
           id: "1",
-          model: modelSetting?.model,
+          model: file ? `${modelSetting?.model}-100k` : modelSetting?.model,
           temperature: modelSetting?.temperature,
           maxTokens: modelSetting?.maxTokens,
         }),
@@ -220,24 +230,18 @@ const Chat = () => {
               </div>
             )}
 
-            {/* {err && (
-              <ChatRecords
-                chats={[
-                  {
-                    role: "assistant",
-                    text: err,
-                    date: Date.now(),
-                  },
-                ]}
-              />
-            )} */}
-
             {assistantRole ? (
               <div className="px-4 mt-8 mb-2 flex flex-col justify-center items-center">
                 <p className="text-sm text-gray-500 px-4 py-1 rounded-ful dark:invert">
                   当前正在跟{" "}
                   <span className="font-bold text-black">
                     {assistantRole.title}
+
+                    {!!file && (
+                      <span className="text-black inline-block font-normal text-xs">
+                        ({file.name})
+                      </span>
+                    )}
                   </span>{" "}
                   聊天
                 </p>
@@ -282,6 +286,13 @@ const Chat = () => {
                 }}
                 onKeyDown={(e) => {
                   if (e.nativeEvent.isComposing) return;
+
+                  setFastZoneVisible(false);
+
+                  if (e.key === "/" && !e.shiftKey && !text) {
+                    setFastZoneVisible(true);
+                  }
+
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
                     sendChat();
@@ -295,6 +306,14 @@ const Chat = () => {
                 )}
                 style={{ height: "40px" }}
               ></textarea>
+
+              <FastOperations
+                visible={fastZoneVisible}
+                onClose={() => setFastZoneVisible(false)}
+                onFileUpload={(fileInfo) => setFile(fileInfo)}
+              >
+                <div className="absolute top-0 invisible">Hidden Item</div>
+              </FastOperations>
 
               {!isMobile && (
                 <span className="absolute min-h-[30px] md:min-h-0 min-w-[36px] bottom-1/2 left-1.5 translate-y-1/2 flex items-center space-x-1 space-x-reverse text-xs py-0 rounded border border-gray-300 dark:border-gray-400 dark:text-white text-black px-2 hover:border-blue-600 hover:dark:border-blue-500">
