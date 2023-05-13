@@ -14,10 +14,17 @@ export default async function handler(req: NextRequest) {
     text,
     model = "claude-instant-v1",
     temperature = 0.7,
+    hasFile = false,
     maxTokens = 400,
   } = await req.json();
 
-  console.log(model, temperature, maxTokens, text ? text.slice(0, 2000) : "");
+  console.log(
+    model,
+    hasFile,
+    temperature,
+    maxTokens,
+    text ? text.slice(0, 2000) : ""
+  );
 
   // const officialApi = new ChatGPTAPI({
   //   apiKey: process.env.OPENAI_API_KEY ?? '',
@@ -40,7 +47,7 @@ export default async function handler(req: NextRequest) {
       stop_sequences: [HUMAN_PROMPT],
       max_tokens_to_sample: maxTokens,
       temperature,
-      model,
+      model: hasFile ? `${model}-100k` : model,
     });
 
     return new Response(

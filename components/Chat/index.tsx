@@ -98,7 +98,8 @@ const Chat = () => {
         body: JSON.stringify({
           text: claudePrompt,
           id: "1",
-          model: file ? `${modelSetting?.model}-100k` : modelSetting?.model,
+          model: modelSetting?.model,
+          hasFile: !!file,
           temperature: modelSetting?.temperature,
           maxTokens: modelSetting?.maxTokens,
         }),
