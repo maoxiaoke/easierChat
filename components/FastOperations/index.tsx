@@ -42,7 +42,9 @@ const FastOperations = ({
               type="file"
               onChange={(e) => {
                 const file = e.target.files?.[0];
-                console.log("fefsf", file);
+                console.log("aaa", file);
+                // if (file?.size > )
+
                 if (!file) {
                   onClose();
                   return;
@@ -64,7 +66,7 @@ const FastOperations = ({
                 };
                 reader.readAsText(file);
               }}
-              accept=".txt"
+              accept=".txt, .pdf"
               className="w-full mt-2 inline-flex items-center justify-center flex-1 rounded px-2.5 text-[13px] leading-none h-[25px] outline-none"
               id="width"
             />

@@ -7,8 +7,9 @@ import { useModelSetting } from "../../contexts/modelSetting";
 
 const models = [
   { name: "claude-instant-v1", desc: "低延迟，减少等待时间" },
+  { name: "claude-instant-v1.1", desc: "低延迟，v1.0 的升级版本" },
   { name: "claude-v1.2", desc: "v1 的升级版本，中文支持更好，但延迟比较高" },
-  { name: "claude-v1.3", desc: "内测版本，但可低调使用" },
+  { name: "claude-v1.3", desc: "在代码、非英文对话和写作会更好，但延迟很高" },
 ];
 
 import * as Slider from "@radix-ui/react-slider";
