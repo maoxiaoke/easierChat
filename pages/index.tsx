@@ -1,14 +1,17 @@
-import Head from 'next/head';
-import dynamic from 'next/dynamic';
-import LeftMenu from '../components/LeftMenu';
-import Settings from '../components/Settings';
-import Alert from '../components/Alert';
-import { AssistantRoleProvider } from '../contexts/assistant';
-import { OpenaiKeyProvider } from '../contexts/openaiKey';
-import { ModelSettingProvider } from '../contexts/modelSetting';
+import Head from "next/head";
+import dynamic from "next/dynamic";
+import LeftMenu from "../components/LeftMenu";
+import Settings from "../components/Settings";
+import Alert from "../components/Alert";
+import { AssistantRoleProvider } from "../contexts/assistant";
+import { OpenaiKeyProvider } from "../contexts/openaiKey";
+import { ModelSettingProvider } from "../contexts/modelSetting";
+import { useIsSupportCapture } from "../hooks/useIsSupportCapture";
 
-const Chat = dynamic(() => import('../components/Chat'), { ssr: false });
-const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: false });
+const Chat = dynamic(() => import("../components/Chat"), { ssr: false });
+const ContextMenu = dynamic(() => import("../components/ContextMenu"), {
+  ssr: false,
+});
 
 // import Image from 'next/image'
 // import { Inter } from 'next/font/google'
@@ -16,6 +19,7 @@ const ContextMenu = dynamic(() => import('../components/ContextMenu'), { ssr: fa
 // const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const isMobile = useIsSupportCapture();
   return (
     <>
       <Head>
@@ -25,7 +29,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex">
-        <Alert />
+        {!isMobile && <Alert />}
         <OpenaiKeyProvider>
           {/* Left Menu */}
           {/* <div style={{ width: '320px' }} className="max-h-screen bg-gray-800 flex flex-col justify-between">
@@ -37,7 +41,7 @@ export default function Home() {
           <div className="flex-1">
             <AssistantRoleProvider>
               <ModelSettingProvider>
-                <ContextMenu >
+                <ContextMenu>
                   <Chat />
                 </ContextMenu>
               </ModelSettingProvider>
@@ -46,5 +50,5 @@ export default function Home() {
         </OpenaiKeyProvider>
       </main>
     </>
-  )
+  );
 }
