@@ -32,7 +32,7 @@ export default async function handler(req: NextRequest) {
 
   const blockIpsList = process.env.BLOCK_IPS?.split(",") || [];
 
-  if (blockIpsList.includes(ip)) {
+  if (blockIpsList.includes(ip) && text.includes("角色扮演")) {
     return new Response(
       JSON.stringify({
         error: "You are blocked",
