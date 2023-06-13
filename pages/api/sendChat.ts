@@ -31,8 +31,13 @@ export default async function handler(req: NextRequest) {
   );
 
   const blockIpsList = process.env.BLOCK_IPS?.split(",") || [];
+  const blockSensitiveWords =
+    process.env.BLOCK_SENSITIVE_WORDS?.split(",") || [];
 
-  if (blockIpsList.includes(ip) && text.includes("角色扮演")) {
+  if (
+    blockIpsList.includes(ip) &&
+    blockSensitiveWords.some((word) => text.includes(word))
+  ) {
     return new Response(
       JSON.stringify({
         error: "You are blocked",
